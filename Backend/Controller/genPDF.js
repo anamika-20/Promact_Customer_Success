@@ -1,4 +1,5 @@
 // Importing necessary modules
+require("dotenv");
 const { jsPDF } = require("jspdf"); // Importing jsPDF module
 const path = require("path"); // Importing path module for file path manipulation
 const fs = require("fs"); // Importing fs module for file system operations
@@ -10,7 +11,7 @@ const addProjectDetailsPage = async (filename, doc, id) => {
   try {
     // Fetching project details data from the server
     let response = await fetch(
-      `http:localhost:8000/project/${id}/project_details`
+      `${process.env.APP_BACKEND_URL}/project/${id}/project_details`
     );
     let { data } = await response.json();
     data = data[0]; // Extracting first element as project details
@@ -49,7 +50,6 @@ const addProjectDetailsPage = async (filename, doc, id) => {
 const addProjectTablesPage = async (filename, doc, id) => {
   try {
     // Routes for fetching different project-related data
-    console.log("pdf", id);
     let routes = [
       `project/${id}/escalation_matrix`,
       `project/${id}/version_history`,
@@ -66,7 +66,7 @@ const addProjectTablesPage = async (filename, doc, id) => {
 
     // Looping through each route to fetch and add data to the PDF
     for (const route of routes) {
-      let response = await fetch(`http:localhost:8000/${route}`);
+      let response = await fetch(`${process.env.APP_BACKEND_URL}/${route}`);
       let { data } = await response.json();
       let invalidColumns = ["_id", "__v", "project_id"];
       let objKeys = Object.keys(data[0]).filter(
@@ -101,7 +101,6 @@ const addProjectTablesPage = async (filename, doc, id) => {
 
 // Function to generate PDF containing project details and tables
 const generatePDF = async (req, res) => {
-  console.log("in gen");
   try {
     let filename = Date.now(); // Generating a unique filename based on timestamp
     const doc = new jsPDF(); // Creating a new jsPDF document
@@ -113,13 +112,12 @@ const generatePDF = async (req, res) => {
     doc.save(filePath); // Saving the PDF document
 
     // Downloading the PDF file and deleting it after download completes
-    return res.download(filePath, `${filename}.pdf`, () => {
+    return res.status(200).download(filePath, `${filename}.pdf`, () => {
       fs.unlinkSync(filePath); // Deleting the PDF file after download
     });
   } catch (error) {
     // Sending error response if any occurs
-    console.log(error);
-    res.json({ status: "error", msg: error });
+    res.status(500).json({ message: "Error while Generating PDF" });
   }
 };
 

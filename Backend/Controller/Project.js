@@ -28,7 +28,6 @@ const getUserProjects = async (req, res) => {
       response = await project.find({});
     } else if (role === "Client") {
       let client_projects = await stakeholders.find({ _id: user_id });
-      console.log(client_projects, user_id);
       client_projects = client_projects.map((project) => project.project_id);
       response = await project.find({
         _id: { $in: client_projects },
@@ -39,12 +38,11 @@ const getUserProjects = async (req, res) => {
         "associated_manager._id": user_id, // Check if user is associated with manager's _id
       });
     }
-    console.log(role, response);
     // Send response with fetched projects
-    res.json({ status: "success", data: response });
+    res.status(200).json({ data: response });
   } catch (error) {
     // If an error occurs, send error response
-    res.json({ status: "error", message: "Internal Server Error" });
+    res.status(500).json({ message: "Error while Getting User projects" });
   }
 };
 
@@ -54,10 +52,10 @@ const addProject = async (req, res) => {
     // Create a new project using data from the request body
     const response = await project.create({ ...req.body });
     // Send success response
-    res.json({ status: "success" });
+    res.status(200).json({ message: "Project Added Successfully" });
   } catch (error) {
     // If an error occurs, send error response
-    res.json({ status: "success", message: "Internal Server Error" });
+    res.status(500).json({ message: "Error while Adding Project" });
   }
 };
 
@@ -78,9 +76,9 @@ const getProjectDetails = async (req, res) => {
       response = [default_project_details];
     }
 
-    res.json({ status: "success", data: response }); // Sending success response with fetched data
+    res.status(200).json({ data: response }); // Sending success response with fetched data
   } catch (error) {
-    res.json({ status: "error", msg: error }); // Sending error response if any occurs during fetching
+    res.status(500).json({ message: "Error while Getting Project Details" }); // Sending error response if any occurs during fetching
   }
 };
 
@@ -116,9 +114,9 @@ const getVersionHistory = async (req, res) => {
       data = reorderArrayOfObject(data, default_version_history); // Reordering version history data
     }
 
-    res.json({ status: "success", data: data }); // Sending success response with fetched data
+    res.status(200).json({ data: data }); // Sending success response with fetched data
   } catch (error) {
-    res.json({ status: "error", msg: error }); // Sending error response if any occurs during fetching
+    res.status(500).json({ message: "Error while Getting Version History" }); // Sending error response if any occurs during fetching
   }
 };
 
@@ -152,9 +150,9 @@ const getAuditHistory = async (req, res) => {
       data = reorderArrayOfObject(data, default_audit_history); // Reordering audit history data
     }
 
-    res.json({ status: "success", data: data }); // Sending success response with fetched data
+    res.status(200).json({ data: data }); // Sending success response with fetched data
   } catch (error) {
-    res.json({ status: "error", msg: error }); // Sending error response if any occurs during fetching
+    res.status(500).json({ message: "Error while Getting Audit History" }); // Sending error response if any occurs during fetching
   }
 };
 
@@ -185,9 +183,9 @@ const getStakeholders = async (req, res) => {
       data = reorderArrayOfObject(data, default_stakeholders); // Reordering stakeholders data
     }
 
-    res.json({ status: "success", data: data }); // Sending success response with fetched data
+    res.status(200).json({ data: data }); // Sending success response with fetched data
   } catch (error) {
-    res.json({ status: "error", msg: error }); // Sending error response if any occurs during fetching
+    res.status(500).json({ message: "Error while Getting Stakeholders" }); // Sending error response if any occurs during fetching
   }
 };
 
@@ -219,9 +217,9 @@ const getEscalationMatrix = async (req, res) => {
       data = reorderArrayOfObject(data, default_escalation_matrix); // Reordering escalation matrix data
     }
 
-    res.json({ status: "success", data: data }); // Sending success response with fetched data
+    res.status(200).json({ data: data }); // Sending success response with fetched data
   } catch (error) {
-    res.json({ status: "error", msg: error }); // Sending error response if any occurs during fetching
+    res.status(500).json({ message: "Error while getting Escalation Matrix" }); // Sending error response if any occurs during fetching
   }
 };
 
@@ -255,9 +253,9 @@ const getRiskProfiling = async (req, res) => {
     } else {
       data = reorderArrayOfObject(data, default_risk_profiling); // Reordering risk profiling data
     }
-    res.json({ status: "success", data: data }); // Sending success response with fetched data
+    res.status(200).json({ data: data }); // Sending success response with fetched data
   } catch (error) {
-    res.json({ status: "error", msg: error }); // Sending error response if any occurs during fetching
+    res.status(500).json({ message: "Error while Getting Risk Profiling" }); // Sending error response if any occurs during fetching
   }
 };
 
@@ -292,9 +290,9 @@ const getPhases = async (req, res) => {
       data = reorderArrayOfObject(data, defaultPhase); // Reordering phases data
     }
 
-    res.json({ status: "success", data: data }); // Sending success response with fetched data
+    res.status(200).json({ data: data }); // Sending success response with fetched data
   } catch (error) {
-    res.json({ status: "error", msg: error }); // Sending error response if any occurs during fetching
+    res.status(500).json({ message: "Error while Getting Phases" }); // Sending error response if any occurs during fetching
   }
 };
 
@@ -326,9 +324,9 @@ const getSprintDetails = async (req, res) => {
       data = reorderArrayOfObject(data, default_sprint_details); // Reordering sprint details data
     }
 
-    res.json({ status: "success", data: data }); // Sending success response with fetched data
+    res.status(200).json({ data: data }); // Sending success response with fetched data
   } catch (error) {
-    res.json({ status: "error", msg: error }); // Sending error response if any occurs during fetching
+    res.status(500).json({ message: "Error while Getting Sprint Details" }); // Sending error response if any occurs during fetching
   }
 };
 
@@ -364,10 +362,10 @@ const getResources = async (req, res) => {
     }
 
     // Send success response with the retrieved data
-    res.json({ status: "success", data: data });
+    res.status(200).json({ data: data });
   } catch (error) {
     // Log error and send error response
-    res.json({ status: "error" });
+    res.status(500).json({ message: "Error while Getting Resources" });
   }
 };
 
@@ -401,10 +399,10 @@ const getMoMs = async (req, res) => {
     }
 
     // Send success response with the retrieved data
-    res.json({ status: "success", data: data });
+    res.status(200).json({ data: data });
   } catch (error) {
     // Send error response if an error occurs
-    res.json({ status: "error" });
+    res.status(500).json({ message: "Error while Getting MoMs" });
   }
 };
 
@@ -439,10 +437,10 @@ const getApprovedTeams = async (req, res) => {
     }
 
     // Send success response with the retrieved data
-    res.json({ status: "success", data: data });
+    res.status(200).json({ data: data });
   } catch (error) {
     // Send error response if an error occurs
-    res.json({ status: "error" });
+    res.status(500).json({ message: "Error while Getting Approved Teams" });
   }
 };
 
@@ -477,10 +475,10 @@ const getClientFeedback = async (req, res) => {
     }
 
     // Send success response with the retrieved data
-    res.json({ status: "success", data: data });
+    res.status(200).json({ data: data });
   } catch (error) {
     // Send error response if an error occurs
-    res.json({ status: "error" });
+    res.status(500).json({ message: "Error while Getting client Feedback" });
   }
 };
 
@@ -512,10 +510,10 @@ const getProjectUpdates = async (req, res) => {
     }
 
     // Send success response with the retrieved data
-    res.json({ status: "success", data: data });
+    res.status(200).json({ data: data });
   } catch (error) {
     // Send error response if an error occurs
-    res.json({ status: "error" });
+    res.status(500).json({ message: "Error while Getting Project Updates" });
   }
 };
 
@@ -523,10 +521,9 @@ const getEditRequest = async (req, res) => {
   try {
     const { user_id } = req.params;
     const response = await edit_requests.find({ user_id: user_id });
-    res.json({ staus: "success", data: response });
+    res.status(200).json({ data: response });
   } catch (error) {
-    console.log(error);
-    res.json({ status: "error" });
+    res.status(500).json({ message: "Error while Getting Edit Request" });
   }
 };
 
@@ -534,10 +531,11 @@ const getProjectEditRequest = async (req, res) => {
   try {
     const { project_id } = req.params;
     const response = await edit_requests.find({ project_id: project_id });
-    res.json({ staus: "success", data: response });
+    res.status(200).json({ data: response });
   } catch (error) {
-    console.log(error);
-    res.json({ status: "error" });
+    res
+      .status(500)
+      .json({ message: "Error while getting Project Edit Request" });
   }
 };
 
@@ -551,9 +549,9 @@ const alterProjectDetails = async (req, res) => {
       { _id: id }, // Finding the project by its ID
       { $set: projectDetails } // Setting the new project details
     );
-    res.json({ status: "success", msg: "Details Updated Successfully" }); // Sending success response
+    res.status(200).json({ message: "Details Updated Successfully" }); // Sending success response
   } catch (error) {
-    res.json({ status: "error", msg: "Some Error Occurred" }); // Sending error response if any error occurs during updating
+    res.status(500).json({ message: "Error while Altering Project Details" }); // Sending error response if any error occurs during updating
   }
 };
 
@@ -595,9 +593,9 @@ const alterVersionHistory = async (req, res) => {
       deleteRecordOperations
     );
 
-    res.json({ status: "success", msg: "Data updated successfully" }); // Sending success response
+    res.status(200).json({ message: "Data updated successfully" }); // Sending success response
   } catch (error) {
-    res.json({ status: "error", msg: error }); // Sending error response if any error occurs
+    res.status(500).json({ message: "Error while Altering Version History" }); // Sending error response if any error occurs
   }
 };
 
@@ -639,9 +637,9 @@ const alterAuditHistory = async (req, res) => {
       deleteRecordOperations
     );
 
-    res.json({ status: "success", msg: "Data updated successfully" }); // Sending success response
+    res.status(200).json({ message: "Data updated successfully" }); // Sending success response
   } catch (error) {
-    res.json({ status: "error", msg: error }); // Sending error response if any error occurs
+    res.status(500).json({ message: "Error while Altering Audit History" }); // Sending error response if any error occurs
   }
 };
 
@@ -696,9 +694,9 @@ const alterStakeholders = async (req, res) => {
       deleteRecordOperations
     );
 
-    res.json({ status: "success", msg: "Data updated successfully" }); // Sending success response
+    res.status(200).json({ message: "Data updated successfully" }); // Sending success response
   } catch (error) {
-    res.json({ status: "error", msg: error }); // Sending error response if any error occurs
+    res.status(500).json({ message: "Error while Altering Stakeholders" }); // Sending error response if any error occurs
   }
 };
 
@@ -751,9 +749,9 @@ const alterEscalationMatrix = async (req, res) => {
       deleteRecordOperations
     );
 
-    res.json({ status: "success", msg: "Data updated successfully" }); // Sending success response
+    res.status(200).json({ message: "Data updated successfully" }); // Sending success response
   } catch (error) {
-    res.json({ status: "error", msg: error }); // Sending error response if any error occurs
+    res.status(500).json({ message: "Error while Altering Escalation Matrix" }); // Sending error response if any error occurs
   }
 };
 
@@ -805,9 +803,9 @@ const alterRiskProfiling = async (req, res) => {
       deleteRecordOperations
     );
 
-    res.json({ status: "success", msg: "Data updated successfully" }); // Sending success response
+    res.status(200).json({ message: "Data updated successfully" }); // Sending success response
   } catch (error) {
-    res.json({ status: "error", msg: error }); // Sending error response if any error occurs
+    res.status(500).json({ message: "Error while Altering Risk Profiling" }); // Sending error response if any error occurs
   }
 };
 
@@ -858,11 +856,10 @@ const alterPhases = async (req, res) => {
     const deleteRecordResult = await phases.bulkWrite(deleteRecordOperations);
 
     // Send success response
-    res.json({ status: "success", msg: "Data updated successfully" });
+    res.status(200).json({ message: "Data updated successfully" });
   } catch (error) {
-    console.log(error); // Log error for debugging
     // Send error response if any error occurs
-    res.json({ status: "error", msg: error });
+    res.status(500).json({ message: "Error while Altering Phases" });
   }
 };
 
@@ -915,9 +912,9 @@ const alterSprintDetails = async (req, res) => {
       deleteRecordOperations
     );
 
-    res.json({ status: "success", msg: "Data updated successfully" }); // Sending success response
+    res.status(200).json({ message: "Data updated successfully" }); // Sending success response
   } catch (error) {
-    res.json({ status: "error", msg: error }); // Sending error response if any error occurs
+    res.status(500).json({ message: "Error while Altering Sprint Details" }); // Sending error response if any error occurs
   }
 };
 
@@ -968,9 +965,9 @@ const alterResources = async (req, res) => {
       deleteRecordOperations
     );
 
-    res.json({ status: "success", msg: "Data updated successfully" }); // Sending success response
+    res.status(200).json({ message: "Data updated successfully" }); // Sending success response
   } catch (error) {
-    res.json({ status: "error", msg: error }); // Sending error response if any error occurs
+    res.status(500).json({ message: "Error while Altering Resources" }); // Sending error response if any error occurs
   }
 };
 
@@ -1021,9 +1018,9 @@ const alterApprovedTeams = async (req, res) => {
       deleteRecordOperations
     );
 
-    res.json({ status: "success", msg: "Data updated successfully" }); // Sending success response
+    res.status(200).json({ message: "Data updated successfully" }); // Sending success response
   } catch (error) {
-    res.json({ status: "error", msg: error }); // Sending error response if any error occurs
+    res.status(500).json({ message: "Error while Altering Approved Teams" }); // Sending error response if any error occurs
   }
 };
 
@@ -1074,9 +1071,9 @@ const alterClientFeedback = async (req, res) => {
       deleteRecordOperations
     );
 
-    res.json({ status: "success", msg: "Data updated successfully" }); // Sending success response
+    res.status(200).json({ message: "Data updated successfully" }); // Sending success response
   } catch (error) {
-    res.json({ status: "error", msg: error }); // Sending error response if any error occurs
+    res.status(500).json({ message: "Error while Altering Client Feedback" }); // Sending error response if any error occurs
   }
 };
 
@@ -1123,9 +1120,9 @@ const alterMoMs = async (req, res) => {
     const updateRecordResult = await mom.bulkWrite(updateRecordOperations);
     const deleteRecordResult = await mom.bulkWrite(deleteRecordOperations);
 
-    res.json({ status: "success", msg: "Data updated successfully" }); // Sending success response
+    res.status(200).json({ message: "Data updated successfully" }); // Sending success response
   } catch (error) {
-    res.json({ status: "error", msg: error }); // Sending error response if any error occurs
+    res.status(500).json({ message: "Error while Altering MoM" }); // Sending error response if any error occurs
   }
 };
 
@@ -1176,9 +1173,9 @@ const alterProjectUpdates = async (req, res) => {
       deleteRecordOperations
     );
 
-    res.json({ status: "success", msg: "Data updated successfully" }); // Sending success response
+    res.status(200).json({ message: "Data updated successfully" }); // Sending success response
   } catch (error) {
-    res.json({ status: "error", msg: error }); // Sending error response if any error occurs
+    res.status(500).json({ message: "Error while Altering Project Updates" }); // Sending error response if any error occurs
   }
 };
 
@@ -1191,10 +1188,9 @@ const alterEditRequest = async (req, res) => {
       { $set: data },
       { upsert: true }
     );
-    res.json({ status: "success", message: "Request Updated Successfully" });
+    res.status(200).json({ message: "Request Updated Successfully" });
   } catch (error) {
-    console.log(error);
-    res.json({ status: "error" });
+    res.status(500).json({ message: "Error while Altering Edit Request" });
   }
 };
 
@@ -1220,15 +1216,13 @@ const deleteProject = async (req, res) => {
 
     for (let i = 0; i < schemas.length; i++) {
       const response = await schemas[i].deleteMany({ project_id: project_id });
-      console.log(response);
     }
 
     const projectDeleteResponse = await project.deleteOne({ _id: project_id });
-    console.log(projectDeleteResponse);
 
-    res.json({});
+    res.status(200).json({ message: "Project Deleted Successfully" });
   } catch (error) {
-    console.log(error);
+    res.status(500).json({ message: "Error while deleting the Project" });
   }
 };
 
@@ -1237,11 +1231,9 @@ const addProjectChanges = async (req, res) => {
     const { project_id } = req.params;
     const project_change = req.body;
     const response = await project_changes.create({ ...project_change });
-    console.log(response);
-    res.json({ status: "success" });
+    res.status(200).json({ status: "success" });
   } catch (error) {
-    console.log(error);
-    res.json({ status: "error" });
+    res.status(500).json({ message: "Error while Adding Project Changes" });
   }
 };
 

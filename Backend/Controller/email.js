@@ -125,10 +125,10 @@ const sendMail = async (req, res) => {
     // Calling main function to send emails
     main().catch(console.error);
     // Sending success response
-    res.json({ status: "success", msg: "Emails sent successfully" });
+    res.status(200).json({ message: "Emails sent successfully" });
   } catch (error) {
     // Sending error response
-    res.json({ status: "error", msg: "Some Error Occurred" });
+    res.status(500).json({ message: "Error while Sending Mails" });
   }
 };
 
@@ -164,11 +164,9 @@ const sendInviteEmail = (req, res) => {
 
     main().catch(console.error);
 
-    res
-      .status(200)
-      .json({ status: "success", message: "Emails Sent Successfully" });
+    res.status(200).json({ message: "Emails Sent Successfully" });
   } catch (error) {
-    res.status(500).json({ status: "error", message: "Internal Server Error" });
+    res.status(500).json({ message: "Error while Sending Invite Emails" });
   }
 };
 
