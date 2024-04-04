@@ -16,10 +16,6 @@ const RequestAccess = () => {
   const BASE_URL = process.env.REACT_APP_BASE_URL; // Base URL for API requests
   const PATH_NAME = new URL(window.location.href).pathname;
 
-  useEffect(() => {
-    console.log(editRequests);
-  }, [editRequests]);
-
   const requestEditAccess = async () => {
     try {
       const project_id = PATH_NAME.split("/")[2];
@@ -42,10 +38,8 @@ const RequestAccess = () => {
       );
       setEditRequests([user_request]);
       const { data } = await response.json();
-      console.log(data, response);
-      console.log(project_id);
     } catch (error) {
-      console.log(error);
+     toast.error("Error while Creating Edit Request")
     }
   };
 
@@ -54,9 +48,8 @@ const RequestAccess = () => {
       const response = await axios.get(`${BASE_URL}/edit-request/${user.sub}`);
       const { data: requests } = response;
       setEditRequests(requests.data);
-      console.log("user req", requests.data);
     } catch (error) {
-      console.log(error);
+      toast.error("Error while Fetching user Request")
     }
   };
 
@@ -68,9 +61,8 @@ const RequestAccess = () => {
       );
       const { data: requests } = response;
       setEditRequests(requests.data);
-      console.log(response);
     } catch (error) {
-      console.log(error);
+      toast.error("Error while Fetching Project Edit Requests")
     }
   };
 
@@ -94,17 +86,15 @@ const RequestAccess = () => {
         }
       });
 
-      // console.log(updatedRequest, updatedRequests);
       setEditRequests(updatedRequests);
       const response = await axios.post(
         `${BASE_URL}/edit-request/${user.sub}`,
         [updatedRequest]
       );
 
-      console.log(response);
       toast.success("Request Status Updated Successfully");
     } catch (error) {
-      console.log(error);
+      toast.error("Error while Updating Request Status")
     }
   };
 

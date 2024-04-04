@@ -38,7 +38,6 @@ const Project_Resources_Section = () => {
       // Making a GET request to fetch stakeholders data
       const response = await fetch(`${BASE_URL}${PATH_NAME}/resources`);
       const { data } = await response.json(); // Parsing response JSON
-      console.log(data);
       // Setting fetched stakeholders data to state variable
       setResources(data);
 

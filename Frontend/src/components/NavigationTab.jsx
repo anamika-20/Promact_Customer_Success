@@ -234,16 +234,13 @@ function NavigationTab({ data, setData }) {
         );
         if (response.statusText === "OK") {
           const newRows = rows.filter((row) => row._id !== project_id);
-          console.log(newRows);
           setData(newRows);
         }
 
         toast.success("Project Deleted Successfully");
-
-        //console.log(response);
       }
     } catch (error) {
-      console.log(error);
+      toast.error("Error while Deleting the Project")
     }
   };
 

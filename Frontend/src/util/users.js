@@ -58,7 +58,7 @@ const sendInviteMail = async (user_details) => {
       ...user_details,
     });
   } catch (error) {
-    console.log(error);
+    return {status:"error",message:"Error while Sending Invite Email"}
   }
 };
 
@@ -82,7 +82,7 @@ export const fetchUsersByRole = async (role) => {
     const data = await response.json();
     return data;
   } catch (error) {
-    console.log(error);
+    return { status: "error", message: "Error while Fetching Users by Role" };
   }
 };
 
@@ -106,7 +106,7 @@ export const fetchRoleOfUser = async (user_id) => {
     const data = await response.json();
     return data;
   } catch (error) {
-    console.log(error);
+    return { status: "error", message: "Error while Fetching Role of User" };
   }
 };
 
@@ -132,8 +132,9 @@ const assignRoleToUser = async (user_id, user_role) => {
       `https://dev-34crl0ebsqxu7bk8.us.auth0.com/api/v2/users/${user_id}/roles`,
       requestOptions
     );
+    return { status: "success", message: "Role Assigned Successfully" };
   } catch (error) {
-    console.log(error);
+    return { status: "error", message: "Error while Assigning Role to user" };
   }
 };
 
@@ -161,11 +162,9 @@ export const updateUserPassword = async (password, user_id) => {
       requestOptions
     );
     response = await response.json();
-    console.log(response);
     return { status: "success", message: "Password Updated Successfully" };
   } catch (error) {
-    console.log(error);
-    return { status: "error", message: "Some Error Occurred" };
+    return { status: "error", message: "Error while Updating user Password" };
   }
 };
 
@@ -213,6 +212,6 @@ export const createNewUser = async (user, role) => {
     sendInviteMail({ email: user.email, user_id: created_user.user_id }); // Send invitation email to the user
     return { status: "success", message: "User Created Successfully" };
   } catch (error) {
-    console.log(error);
+    return { status: "error", message: "Error while Creating New User" };
   }
 };

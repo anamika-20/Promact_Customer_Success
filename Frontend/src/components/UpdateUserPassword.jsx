@@ -12,7 +12,6 @@ const CreateUserLogin = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showNavigateButton, setShowNavigateButton] = useState(false);
-  console.log(decodeURIComponent(queryParameters.get("userId")));
 
   useEffect(() => {
     if (
@@ -25,7 +24,6 @@ const CreateUserLogin = () => {
   }, []);
 
   const handleCreateAccount = async () => {
-    console.log(password, confirmPassword, password !== confirmPassword);
     if (password !== confirmPassword) {
       toast.error("Passwords do not match");
       return;
@@ -34,7 +32,6 @@ const CreateUserLogin = () => {
         password,
         queryParameters.get("userId")
       );
-      console.log(response);
       toast.success("Password Updated Successfully");
       setShowNavigateButton(true);
     }

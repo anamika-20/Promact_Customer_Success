@@ -13,6 +13,7 @@ import { FaRegFilePdf, FaUserLock } from "react-icons/fa6";
 import { AiOutlineFileSync } from "react-icons/ai";
 import { RxCross2 } from "react-icons/rx";
 import RequestAccess from "./RequestAccess";
+import { toast } from "react-toastify"; // Import toast notifications
 
 // Importing individual sections/components related to the project
 import Project_Overview_Section from "./Project_Overview_Section";
@@ -47,13 +48,9 @@ const Project = () => {
       // Making a GET request to generate PDF
       const response = await fetch(`${BASE_URL}${PATH_NAME}/genPDF`);
     } catch (error) {
-      console.log(error);
+      toast.error("Error while Generating PDF");
     }
   };
-
-  useEffect(() => {
-    console.log(showRequests);
-  }, [showRequests]);
 
   // Render JSX
   return (

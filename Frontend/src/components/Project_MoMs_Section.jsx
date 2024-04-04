@@ -38,7 +38,6 @@ const Project_MoMs_Section = () => {
       // Making a GET request to fetch stakeholders data
       const response = await fetch(`${BASE_URL}${PATH_NAME}/mom`);
       const { data } = await response.json(); // Parsing response JSON
-      console.log(data);
       // Setting fetched stakeholders data to state variable
       setMoMs(data);
 

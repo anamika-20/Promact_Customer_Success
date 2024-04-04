@@ -39,7 +39,6 @@ const Project_Project_Updates_Section = () => {
       // Making a GET request to fetch stakeholders data
       const response = await fetch(`${BASE_URL}${PATH_NAME}/project_updates`);
       const { data } = await response.json(); // Parsing response JSON
-      console.log(data);
       // Setting fetched stakeholders data to state variable
       setProjectUpdates(data);
 
@@ -80,10 +79,6 @@ const Project_Project_Updates_Section = () => {
       )}
       {/* Container for stakeholders table */}
       <Box className="escalation-matrix-table-container">
-        {
-          /* Render the Table component if stakeholders data is available */
-          console.log(projectUpdates.length)
-        }
         {projectUpdates.length > 0 && (
           <Table
             allowedUsers={allowedUsers}

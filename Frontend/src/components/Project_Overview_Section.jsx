@@ -52,8 +52,7 @@ const Project_Overview_Section = () => {
       setChangesMade(false); // Resetting changesMade state after successful submission
     } catch (error) {
       // Displaying error message using toast notification
-      console.log(error);
-      toast.error("Some Error");
+      toast.error("Error while Saving Data");
     }
   };
 
@@ -80,7 +79,6 @@ const Project_Overview_Section = () => {
 
       const { data } = await response.json();
       // Setting fetched project details to state variable
-      console.log(data[0]);
       setProjectDetails(data[0]);
 
       const project_id = PATH_NAME.split("/")[2];

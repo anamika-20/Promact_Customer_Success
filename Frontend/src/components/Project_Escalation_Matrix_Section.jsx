@@ -38,10 +38,6 @@ const Project_Escalation_Matrix_Section = () => {
     }
   };
 
-  // useEffect(() => {
-  //   console.log(allowedUsers);
-  // }, [allowedUsers]);
-
   // Function to fetch escalation matrix data from the server
   const fetchData = async () => {
     try {
@@ -64,11 +60,9 @@ const Project_Escalation_Matrix_Section = () => {
           return user.user_id;
         });
       });
-      //console.log(users, allowedUsersResponse);
     } catch (error) {
       // Displaying error message using toast notification
-      console.log(error);
-      toast.error("Some Error");
+      toast.error("Error while Fetching Escalation Matrix Data");
     }
   };
 
