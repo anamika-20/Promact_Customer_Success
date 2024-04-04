@@ -35,8 +35,10 @@ const {
   getEditRequest,
   getProjectEditRequest,
   deleteProject,
-  addProjectChanges
+  addProjectChanges,
 } = require("./Controller/Project.js");
+
+const { fetchManagers } = require("./Controller/manager.js");
 
 const { generatePDF } = require("./Controller/genPDF.js"); // Importing function for generating PDF files
 const { sendMail, sendInviteEmail } = require("./Controller/email.js"); // Importing function for sending emails
@@ -143,8 +145,9 @@ router.route("/project-edit-request/:project_id").get(getProjectEditRequest);
 
 router.route("/project-delete/:project_id").delete(deleteProject);
 
-router.route('/project-change/').post(addProjectChanges)
+router.route("/project-change/").post(addProjectChanges);
 
+router.route("/getManagers").get(fetchManagers);
 
-// Exporting the router module
+// Exporting the router modulecls
 module.exports = router;
