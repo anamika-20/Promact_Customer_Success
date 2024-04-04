@@ -14,7 +14,7 @@ root.render(
     {/* Auth0Provider for handling authentication */}
     <Auth0Provider
       domain="dev-34crl0ebsqxu7bk8.us.auth0.com"
-      clientId="Gfzgtz5ShwPET8TzVUWsmJFHWbV7BFI9"
+      clientId="02cOKTc1n5QzhuDSSzt4Ab6Q8IrCLkVF"
       audience="https://dev-34crl0ebsqxu7bk8.us.auth0.com/api/v2/"
       authorizationParams={{
         redirect_uri: "http://localhost:3000/",
