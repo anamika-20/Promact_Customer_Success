@@ -1181,7 +1181,6 @@ const alterProjectUpdates = async (req, res) => {
 
 const alterEditRequest = async (req, res) => {
   try {
-    console.log(req.body);
     const data = req.body[0];
     const response = await edit_requests.updateOne(
       { _id: data._id },

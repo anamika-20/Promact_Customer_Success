@@ -123,7 +123,9 @@ const sendMail = async (req, res) => {
       });
     }
     // Calling main function to send emails
-    main().catch(console.error);
+    main().catch((error) => {
+      throw error;
+    });
     // Sending success response
     res.status(200).json({ message: "Emails sent successfully" });
   } catch (error) {
@@ -136,7 +138,6 @@ const sendMail = async (req, res) => {
 const sendInviteEmail = (req, res) => {
   try {
     const { email, user_id } = req.body;
-    console.log(req.body);
     const transporter = nodemailer.createTransport({
       service: "gmail",
       host: "smtp.gmail.com",
@@ -162,7 +163,9 @@ const sendInviteEmail = (req, res) => {
       });
     }
 
-    main().catch(console.error);
+    main().catch((error) => {
+      throw error;
+    });
 
     res.status(200).json({ message: "Emails Sent Successfully" });
   } catch (error) {
