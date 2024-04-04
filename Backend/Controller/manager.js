@@ -19,7 +19,7 @@ const generateToken = async () => {
     const { data } = response;
     return data.access_token;
   } catch (error) {
-    res.status(500).json({ message: "some error occurred" });
+    res.status(500).json({ message: "Error while Fetching Token" });
   }
 };
 
@@ -40,7 +40,7 @@ const fetchManagers = async (req, res) => {
     const { data } = response;
     res.status(200).json(data);
   } catch (error) {
-    res.status(500).json({ message: "some error occurred" });
+    res.status(500).json({ message: "Error while Fetching Managers" });
   }
 };
 
