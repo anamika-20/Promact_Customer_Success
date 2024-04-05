@@ -60,7 +60,7 @@ const CreateUserLogin = () => {
                 logout();
                 navigate("/login");
               }}
-              className="login-button"
+              className="login-navigation-button"
             >
               Navigate to Login Page
             </button>
