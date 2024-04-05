@@ -13,11 +13,11 @@ root.render(
   <BrowserRouter>
     {/* Auth0Provider for handling authentication */}
     <Auth0Provider
-      domain="dev-34crl0ebsqxu7bk8.us.auth0.com"
-      clientId="02cOKTc1n5QzhuDSSzt4Ab6Q8IrCLkVF"
-      audience="https://dev-34crl0ebsqxu7bk8.us.auth0.com/api/v2/"
+      domain={process.env.REACT_APP_DOMAIN}
+      clientId={process.env.REACT_APP_CLIENT_ID}
+      audience={process.env.REACT_APP_AUDIENCE}
       authorizationParams={{
-        redirect_uri: "http://localhost:3000/",
+        redirect_uri: process.env.REACT_APP_FRONTEND_URL,
       }}
     >
       {/* AuthProvider for managing authentication context */}
