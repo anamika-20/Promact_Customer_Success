@@ -45,7 +45,7 @@ const Table = ({
   const handleInputValidation = (id) => {
     const requiredRow = rows.filter((row) => row._id === id)[0];
     for (const column of columns) {
-      if (requiredRow[column] === "") {
+      if (requiredRow[column] === "" && column != "edited_by") {
         return true;
       }
     }
@@ -130,6 +130,7 @@ const Table = ({
   const handleAddRow = () => {
     const newRow = {};
     columns.forEach((column) => (newRow[column] = ""));
+    newRow["edited_by"] = auth.user.name;
     const newId = uuidv4(); // Generate unique ID for the new row
     setRows([...rows, { ...newRow, _id: newId, editable: true }]);
   };
@@ -194,7 +195,9 @@ const Table = ({
             <tr key={row._id}>
               {columns.map((column, cellIndex) => (
                 <td key={cellIndex}>
-                  {row.editable ? renderInputField(column, row) : row[column]}
+                  {row.editable && column != "edited_by"
+                    ? renderInputField(column, row)
+                    : row[column]}
                 </td>
               ))}
               {(allowedRoles.includes(auth.role) ||
