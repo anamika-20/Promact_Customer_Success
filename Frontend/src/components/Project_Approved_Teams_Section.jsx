@@ -6,7 +6,7 @@ import axios from "axios"; // Importing Axios for making HTTP requests
 import "../styling/project_approved_teams_section.css"; // Importing CSS styles for the component
 import { toast } from "react-toastify"; // Importing toast notifications for displaying messages
 
-const Project_Approved_Teams_Section = () => {
+const Project_Approved_Teams_Section = ({ activeTab }) => {
   // State variable to store the approved teams data
   const [approvedTeams, setApprovedTeams] = useState([]);
   // State variable to store the changed table rows
@@ -68,6 +68,7 @@ const Project_Approved_Teams_Section = () => {
       const { data } = await response.json();
       // Setting approved teams data
       setApprovedTeams(data);
+      console.log(data);
 
       const project_id = PATH_NAME.split("/")[2];
       const allowedUsersResponse = await axios.get(
@@ -90,9 +91,12 @@ const Project_Approved_Teams_Section = () => {
 
   // Effect hook to fetch data when the component mounts
   useEffect(() => {
+    if (activeTab != 11) {
+      return;
+    }
     // Calling the fetchData function
     fetchData();
-  }, []);
+  }, [activeTab]);
 
   // Render JSX
   return (
