@@ -199,7 +199,27 @@ const getEscalationMatrix = async (req, res) => {
       {
         project_id: id,
         level: "",
-        escalation_type: "",
+        escalation_type: "financial",
+        member: "",
+        designation: "",
+        edited_by: "",
+        _id: "",
+        __v: "",
+      },
+      {
+        project_id: id,
+        level: "",
+        escalation_type: "technical",
+        member: "",
+        designation: "",
+        edited_by: "",
+        _id: "",
+        __v: "",
+      },
+      {
+        project_id: id,
+        level: "",
+        escalation_type: "operational",
         member: "",
         designation: "",
         edited_by: "",
@@ -268,7 +288,7 @@ const getPhases = async (req, res) => {
     const defaultPhase = [
       {
         project_id: id,
-        title: "",
+        title: "Phase 1",
         start_date: "",
         completion_date: "",
         approval_date: "",
@@ -412,6 +432,17 @@ const getApprovedTeams = async (req, res) => {
     // Extract project id from request parameters
     const { id } = req.params;
 
+    const phases_response = await phases.find({ project_id: id });
+    const unique_phases = new Set();
+
+    phases_response.map((record) => {
+      unique_phases.add(record.title);
+    });
+
+    if (unique_phases.size == 0) {
+      unique_phases.add("Phase 1");
+    }
+
     // Define a default approved team object structure
     const default_approved_team = [
       {
@@ -421,20 +452,31 @@ const getApprovedTeams = async (req, res) => {
         role: "",
         availability: "",
         duration: "",
-        category: "Phase 1",
+        category: "",
         edited_by: "",
       },
     ];
 
     // Find approved teams associated with the project id
     let data = await approved_team.find({ project_id: id });
+    unique_phases.forEach((phase) => {
+      let records = data.filter((record) => record.category == phase);
+      if (records.length == 0) {
+        data.push({
+          _id: "",
+          project_id: id,
+          no_of_resources: "",
+          role: "",
+          availability: "",
+          duration: "",
+          category: `${phase}`,
+          edited_by: "",
+        });
+      }
+    });
 
     // If no approved teams are found, use the default approved team structure
-    if (data.length == 0) {
-      data = default_approved_team; // Setting default approved team structure if no data found
-    } else {
-      data = reorderArrayOfObject(data, default_approved_team); // Reordering approved team data
-    }
+    data = reorderArrayOfObject(data, default_approved_team); // Reordering approved team data
 
     // Send success response with the retrieved data
     res.status(200).json({ data: data });
