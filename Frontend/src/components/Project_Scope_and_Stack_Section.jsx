@@ -7,7 +7,7 @@ import { toast } from "react-toastify"; // Importing toast notifications for dis
 import AuthContext from "../context/AuthProvider";
 
 // Scope_and_Stack_Section component definition
-const Scope_and_Stack_Section = () => {
+const Scope_and_Stack_Section = ({ activeTab }) => {
   // State variables to manage component data and behavior
   const [projectDetails, setProjectDetails] = useState({}); // State to manage project details
   const [changesMade, setChangesMade] = useState(false); // State to track changes made to project details
@@ -103,8 +103,11 @@ const Scope_and_Stack_Section = () => {
 
   // Hook to fetch data when the component mounts
   useEffect(() => {
+    if (activeTab != 11) {
+      return;
+    }
     fetchData();
-  }, []);
+  }, [activeTab]);
 
   // Render JSX
   return (

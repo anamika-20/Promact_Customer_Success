@@ -6,7 +6,7 @@ import axios from "axios"; // Importing Axios for making HTTP requests
 import "../styling/project_stakeholder_section.css"; // Importing CSS styles for the component
 import { toast } from "react-toastify"; // Importing toast notifications for displaying messages
 
-const Project_MoMs_Section = () => {
+const Project_MoMs_Section = ({ activeTab }) => {
   const [MoMs, setMoMs] = useState([]); // State to manage stakeholders data
   const [changedTableRows, setChangedTableRows] = useState([]); // State to track changed table rows
   const [showSaveButton, setShowSaveButton] = useState(false); // State to control visibility of save button
@@ -62,8 +62,11 @@ const Project_MoMs_Section = () => {
 
   // Hook to fetch data when the component mounts
   useEffect(() => {
+    if (activeTab != 10) {
+      return;
+    }
     fetchData(); // Calling the fetchData function
-  }, []);
+  }, [activeTab]);
 
   // Render JSX
   return (

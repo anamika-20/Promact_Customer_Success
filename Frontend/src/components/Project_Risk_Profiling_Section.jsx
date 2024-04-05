@@ -7,7 +7,7 @@ import "../styling/project_risk_profiling_section.css"; // Importing CSS styles 
 import { toast } from "react-toastify"; // Importing toast notifications for displaying messages
 
 // Project_Risk_Profiling_Section component definition
-const Project_Risk_Profiling_Section = () => {
+const Project_Risk_Profiling_Section = ({ activeTab }) => {
   // State variables to manage component data and behavior
   const [riskProfiling, setRiskProfiling] = useState([]); // State to manage risk profiling data
   const [changedTableRows, setChangedTableRows] = useState([]); // State to manage changed table rows
@@ -66,8 +66,11 @@ const Project_Risk_Profiling_Section = () => {
 
   // Hook to fetch data when the component mounts
   useEffect(() => {
+    if (activeTab != 5) {
+      return;
+    }
     fetchData();
-  }, []);
+  }, [activeTab]);
 
   // Render JSX
   return (

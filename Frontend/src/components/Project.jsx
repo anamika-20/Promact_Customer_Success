@@ -107,7 +107,7 @@ const Project = () => {
                 <Tab className="tab">Version History</Tab>
                 <Tab className="tab">Audit History</Tab>
                 <Tab className="tab">Project Updates</Tab>
-                <Tab className="tab">MoM's</Tab>
+                <Tab className="tab">MoM</Tab>
                 <Tab className="tab">Approved Teams</Tab>
                 <Tab className="tab">Client Feedback</Tab>
                 <Tab className="tab">Resources</Tab>
@@ -121,54 +121,54 @@ const Project = () => {
                 {/* Individual tab panels */}
                 <TabPanel>
                   {/* Project Overview Section */}
-                  <Project_Overview_Section />
+                  <Project_Overview_Section activeTab={activeTab}/>
                 </TabPanel>
                 <TabPanel>
                   {/* Scope and Stack Section */}
-                  <Project_Scope_and_Stack_Section />
+                  <Project_Scope_and_Stack_Section activeTab={activeTab}/>
                 </TabPanel>
                 <TabPanel>
                   {/* Escalation Matrix Section */}
-                  <Project_Escalation_Matrix_Section />
+                  <Project_Escalation_Matrix_Section activeTab={activeTab}/>
                 </TabPanel>
                 <TabPanel>
                   {/* Phases Section */}
-                  <Project_Phases_Section />
+                  <Project_Phases_Section activeTab={activeTab}/>
                 </TabPanel>
                 <TabPanel>
                   {/* Sprint Details Section */}
-                  <Project_Sprint_Details_Section />
+                  <Project_Sprint_Details_Section activeTab={activeTab}/>
                 </TabPanel>
                 <TabPanel>
                   {/* Risk Profiling Section */}
-                  <Project_Risk_Profiling_Section />
+                  <Project_Risk_Profiling_Section activeTab={activeTab}/>
                 </TabPanel>
                 <TabPanel>
                   {/* Stakeholders Section */}
-                  <Project_Stakeholder_Section />
+                  <Project_Stakeholder_Section activeTab={activeTab}/>
                 </TabPanel>
                 <TabPanel>
                   {/* Version History Section */}
-                  <Project_Version_History_Section />
+                  <Project_Version_History_Section activeTab={activeTab}/>
                 </TabPanel>
                 <TabPanel>
                   {/* Audit History Section */}
-                  <Project_Audit_History_Section />
+                  <Project_Audit_History_Section activeTab={activeTab}/>
                 </TabPanel>
                 <TabPanel>
-                  <Project_Project_Updates_Section />
+                  <Project_Project_Updates_Section activeTab={activeTab}/>
                 </TabPanel>
                 <TabPanel>
-                  <Project_MoMs_Section />
+                  <Project_MoMs_Section activeTab={activeTab}/>
                 </TabPanel>
                 <TabPanel>
-                  <Project_Approved_Teams_Section />
+                  <Project_Approved_Teams_Section activeTab={activeTab} />
                 </TabPanel>
                 <TabPanel>
-                  <Project_Client_Feedback_Section />
+                  <Project_Client_Feedback_Section activeTab={activeTab}/>
                 </TabPanel>
                 <TabPanel>
-                  <Project_Resources_Section />
+                  <Project_Resources_Section activeTab={activeTab}/>
                 </TabPanel>
               </TabPanels>
             </div>

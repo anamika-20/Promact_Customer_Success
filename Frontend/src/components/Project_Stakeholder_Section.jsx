@@ -7,7 +7,7 @@ import "../styling/project_stakeholder_section.css"; // Importing CSS styles for
 import { toast } from "react-toastify"; // Importing toast notifications for displaying messages
 
 // Project_Stakeholder_Section component definition
-const Project_Stakeholder_Section = () => {
+const Project_Stakeholder_Section = ({ activeTab }) => {
   // State variables to manage component data and behavior
   const [stakeholders, setStakeholders] = useState([]); // State to manage stakeholders data
   const [changedTableRows, setChangedTableRows] = useState([]); // State to track changed table rows
@@ -52,8 +52,11 @@ const Project_Stakeholder_Section = () => {
 
   // Hook to fetch data when the component mounts
   useEffect(() => {
+    if (activeTab != 6) {
+      return;
+    }
     fetchData(); // Calling the fetchData function
-  }, []);
+  }, [activeTab]);
 
   // Render JSX
   return (

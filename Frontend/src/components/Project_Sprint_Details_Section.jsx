@@ -7,7 +7,7 @@ import { toast } from "react-toastify"; // Importing toast notifications for dis
 import "../styling/project_sprint_details_section.css"; // Importing CSS styles for the component
 
 // Project_Sprint_Details_Section component definition
-const Project_Sprint_Details_Section = () => {
+const Project_Sprint_Details_Section = ({ activeTab }) => {
   // State variables to manage component data and behavior
   const [sprintDetails, setSprintDetails] = useState([]); // State to manage sprint details
   const [changedTableRows, setChangedTableRows] = useState([]); // State to track changed table rows
@@ -66,8 +66,11 @@ const Project_Sprint_Details_Section = () => {
 
   // Hook to fetch data when the component mounts
   useEffect(() => {
+    if (activeTab != 4) {
+      return;
+    }
     fetchData(); // Calling the fetchData function
-  }, []);
+  }, [activeTab]);
 
   // Render JSX
   return (

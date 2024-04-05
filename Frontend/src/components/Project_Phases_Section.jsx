@@ -7,7 +7,7 @@ import "../styling/project_phases_section.css"; // Importing CSS styles for the 
 import { toast } from "react-toastify"; // Importing toast notifications for displaying messages
 
 // Project_Phases_Section component definition
-const Project_Phases_Section = () => {
+const Project_Phases_Section = ({ activeTab }) => {
   // State variables to manage component data and behavior
   const [phaseHistory, setPhaseHistory] = useState([]); // State to manage phase history data
   const [changedTableRows, setChangedTableRows] = useState([]); // State to manage changed table rows
@@ -65,8 +65,11 @@ const Project_Phases_Section = () => {
 
   // Hook to fetch data when the component mounts
   useEffect(() => {
+    if (activeTab != 3) {
+      return;
+    }
     fetchData();
-  }, []); // Empty dependency array ensures that this effect runs only once after the component mounts
+  }, [activeTab]); // Empty dependency array ensures that this effect runs only once after the component mounts
 
   // Render JSX
   return (

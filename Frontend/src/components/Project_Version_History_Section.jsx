@@ -7,7 +7,7 @@ import "../styling/project_version_history_section.css"; // Importing CSS styles
 import { toast } from "react-toastify"; // Importing toast notifications for displaying messages
 
 // Project_Version_History_Section component definition
-const Project_Version_History_Section = () => {
+const Project_Version_History_Section = ({ activeTab }) => {
   // State variables to manage component data and behavior
   const [versionHistory, setVersionHistory] = useState([]); // State to manage version history data
   const [changedTableRows, setChangedTableRows] = useState([]); // State to track changed table rows
@@ -67,8 +67,11 @@ const Project_Version_History_Section = () => {
 
   // Hook to fetch data when the component mounts
   useEffect(() => {
+    if (activeTab != 7) {
+      return;
+    }
     fetchData(); // Calling the fetchData function
-  }, []);
+  }, [activeTab]);
 
   // Render JSX
   return (

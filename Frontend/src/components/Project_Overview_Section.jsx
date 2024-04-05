@@ -7,7 +7,7 @@ import { toast } from "react-toastify"; // Importing toast notifications for dis
 import AuthContext from "../context/AuthProvider";
 
 // Project_Overview_Section component definition
-const Project_Overview_Section = () => {
+const Project_Overview_Section = ({ activeTab }) => {
   // State variables to manage component data and behavior
   const [changesMade, setChangesMade] = useState(false); // State to track if changes have been made
   const [projectDetails, setProjectDetails] = useState({
@@ -102,8 +102,11 @@ const Project_Overview_Section = () => {
 
   // Hook to fetch data when the component mounts
   useEffect(() => {
+    if (activeTab != 0) {
+      return;
+    }
     fetchData();
-  }, []); // Empty dependency array ensures that this effect runs only once after the component mounts
+  }, [activeTab]); // Empty dependency array ensures that this effect runs only once after the component mounts
 
   // Render JSX
   return (

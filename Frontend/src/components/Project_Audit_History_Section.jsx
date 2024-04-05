@@ -7,7 +7,7 @@ import "../styling/project_audit_history_section.css"; // Importing CSS styles f
 import { toast } from "react-toastify"; // Importing toast notifications for displaying messages
 
 // Project_Audit_History_Section component definition
-const Project_Audit_History_Section = () => {
+const Project_Audit_History_Section = ({ activeTab }) => {
   // State variables to manage component data and behavior
   const [auditHistory, setAuditHistory] = useState([]); // State for storing audit history data
   const [changedTableRows, setChangedTableRows] = useState([]); // State for storing changed table rows
@@ -59,8 +59,11 @@ const Project_Audit_History_Section = () => {
 
   // Hook to fetch data when the component mounts
   useEffect(() => {
+    if (activeTab != 8) {
+      return;
+    }
     fetchData();
-  }, []); // Empty dependency array ensures that this effect runs only once after the component mounts
+  }, [activeTab]); // Empty dependency array ensures that this effect runs only once after the component mounts
 
   // Render JSX
   return (
@@ -81,7 +84,6 @@ const Project_Audit_History_Section = () => {
             defaultValues={{
               project_id: auditHistory[0].project_id, // Set project_id based on the first item in auditHistory array
             }}
-            
             // Define roles allowed to access this table
             allowedRoles={["Auditor"]}
             // Identifier for the table section
