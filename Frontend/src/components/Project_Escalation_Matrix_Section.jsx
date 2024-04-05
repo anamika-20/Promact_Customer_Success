@@ -6,7 +6,7 @@ import axios from "axios"; // Importing Axios for making HTTP requests
 import { toast } from "react-toastify"; // Importing toast notifications for displaying messages
 
 // Project_Escalation_Matrix_Section component definition
-const Project_Escalation_Matrix_Section = () => {
+const Project_Escalation_Matrix_Section = ({ activeTab }) => {
   // State variables to manage component data and behavior
   const [escalationMatrix, setEscalationMatrix] = useState([]); // State for storing escalation matrix data
   const [changedTableRows, setChangedTableRows] = useState([]); // State for storing changed table rows
@@ -68,8 +68,11 @@ const Project_Escalation_Matrix_Section = () => {
 
   // Hook to fetch data when the component mounts
   useEffect(() => {
+    if (activeTab != 2) {
+      return;
+    }
     fetchData();
-  }, []); // Empty dependency array ensures that this effect runs only once after the component mounts
+  }, [activeTab]); // Empty dependency array ensures that this effect runs only once after the component mounts
 
   // Function to get unique escalation types from the matrix data
   const uniqueTypes = () => {
