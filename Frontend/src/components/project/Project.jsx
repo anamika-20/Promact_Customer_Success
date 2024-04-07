@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"; // Importing React and useState hook
+import React, { useState } from "react"; // Importing React and useState hook
 import {
   Box,
   Flex,
@@ -8,7 +8,7 @@ import {
   TabPanels,
 } from "monday-ui-react-core"; // Importing necessary components from Monday UI React Core library
 import "monday-ui-react-core/tokens"; // Importing tokens for styling
-import "../styling/project.css"; // Importing CSS styles for the component
+import "../../styling/project.css"; // Importing CSS styles for the component
 import { FaRegFilePdf, FaUserLock } from "react-icons/fa6";
 import { AiOutlineFileSync } from "react-icons/ai";
 import { RxCross2 } from "react-icons/rx";
@@ -16,20 +16,20 @@ import RequestAccess from "./RequestAccess";
 import { toast } from "react-toastify"; // Import toast notifications
 
 // Importing individual sections/components related to the project
-import Project_Overview_Section from "./Project_Overview_Section";
-import Project_Audit_History_Section from "./Project_Audit_History_Section";
-import Project_Version_History_Section from "./Project_Version_History_Section";
-import Project_Escalation_Matrix_Section from "./Project_Escalation_Matrix_Section";
-import Project_Risk_Profiling_Section from "./Project_Risk_Profiling_Section";
-import Project_Scope_and_Stack_Section from "./Project_Scope_and_Stack_Section";
-import Project_Sprint_Details_Section from "./Project_Sprint_Details_Section";
-import Project_Stakeholder_Section from "./Project_Stakeholder_Section";
-import Project_Phases_Section from "./Project_Phases_Section";
-import Project_Project_Updates_Section from "./Project_Project_Updates_Section";
-import Project_MoMs_Section from "./Project_MoMs_Section";
-import Project_Approved_Teams_Section from "./Project_Approved_Teams_Section";
-import Project_Client_Feedback_Section from "./Project_Client_Feedback_Section";
-import Project_Resources_Section from "./Project_Resources_Section";
+import Project_Overview_Section from "../table_sections/Project_Overview_Section";
+import Project_Audit_History_Section from "../table_sections/Project_Audit_History_Section";
+import Project_Version_History_Section from "../table_sections/Project_Version_History_Section";
+import Project_Escalation_Matrix_Section from "../table_sections/Project_Escalation_Matrix_Section";
+import Project_Risk_Profiling_Section from "../table_sections/Project_Risk_Profiling_Section";
+import Project_Scope_and_Stack_Section from "../table_sections/Project_Scope_and_Stack_Section";
+import Project_Sprint_Details_Section from "../table_sections/Project_Sprint_Details_Section";
+import Project_Stakeholder_Section from "../table_sections/Project_Stakeholder_Section";
+import Project_Phases_Section from "../table_sections/Project_Phases_Section";
+import Project_Project_Updates_Section from "../table_sections/Project_Project_Updates_Section";
+import Project_MoMs_Section from "../table_sections/Project_MoMs_Section";
+import Project_Approved_Teams_Section from "../table_sections/Project_Approved_Teams_Section";
+import Project_Client_Feedback_Section from "../table_sections/Project_Client_Feedback_Section";
+import Project_Resources_Section from "../table_sections/Project_Resources_Section";
 
 // Project component definition
 const Project = () => {
@@ -121,54 +121,54 @@ const Project = () => {
                 {/* Individual tab panels */}
                 <TabPanel>
                   {/* Project Overview Section */}
-                  <Project_Overview_Section activeTab={activeTab}/>
+                  <Project_Overview_Section activeTab={activeTab} />
                 </TabPanel>
                 <TabPanel>
                   {/* Scope and Stack Section */}
-                  <Project_Scope_and_Stack_Section activeTab={activeTab}/>
+                  <Project_Scope_and_Stack_Section activeTab={activeTab} />
                 </TabPanel>
                 <TabPanel>
                   {/* Escalation Matrix Section */}
-                  <Project_Escalation_Matrix_Section activeTab={activeTab}/>
+                  <Project_Escalation_Matrix_Section activeTab={activeTab} />
                 </TabPanel>
                 <TabPanel>
                   {/* Phases Section */}
-                  <Project_Phases_Section activeTab={activeTab}/>
+                  <Project_Phases_Section activeTab={activeTab} />
                 </TabPanel>
                 <TabPanel>
                   {/* Sprint Details Section */}
-                  <Project_Sprint_Details_Section activeTab={activeTab}/>
+                  <Project_Sprint_Details_Section activeTab={activeTab} />
                 </TabPanel>
                 <TabPanel>
                   {/* Risk Profiling Section */}
-                  <Project_Risk_Profiling_Section activeTab={activeTab}/>
+                  <Project_Risk_Profiling_Section activeTab={activeTab} />
                 </TabPanel>
                 <TabPanel>
                   {/* Stakeholders Section */}
-                  <Project_Stakeholder_Section activeTab={activeTab}/>
+                  <Project_Stakeholder_Section activeTab={activeTab} />
                 </TabPanel>
                 <TabPanel>
                   {/* Version History Section */}
-                  <Project_Version_History_Section activeTab={activeTab}/>
+                  <Project_Version_History_Section activeTab={activeTab} />
                 </TabPanel>
                 <TabPanel>
                   {/* Audit History Section */}
-                  <Project_Audit_History_Section activeTab={activeTab}/>
+                  <Project_Audit_History_Section activeTab={activeTab} />
                 </TabPanel>
                 <TabPanel>
-                  <Project_Project_Updates_Section activeTab={activeTab}/>
+                  <Project_Project_Updates_Section activeTab={activeTab} />
                 </TabPanel>
                 <TabPanel>
-                  <Project_MoMs_Section activeTab={activeTab}/>
+                  <Project_MoMs_Section activeTab={activeTab} />
                 </TabPanel>
                 <TabPanel>
                   <Project_Approved_Teams_Section activeTab={activeTab} />
                 </TabPanel>
                 <TabPanel>
-                  <Project_Client_Feedback_Section activeTab={activeTab}/>
+                  <Project_Client_Feedback_Section activeTab={activeTab} />
                 </TabPanel>
                 <TabPanel>
-                  <Project_Resources_Section activeTab={activeTab}/>
+                  <Project_Resources_Section activeTab={activeTab} />
                 </TabPanel>
               </TabPanels>
             </div>

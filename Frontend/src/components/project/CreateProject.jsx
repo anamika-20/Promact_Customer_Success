@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import "../styling/create-project.css";
+import "../../styling/create-project.css";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid"; // Import UUID generator
 import { useNavigate } from "react-router-dom";
-import { createNewUser, fetchUsersByRole } from "../util/users"; // Import utility functions
+import { createNewUser, fetchUsersByRole } from "../../util/users"; // Import utility functions
 import { toast } from "react-toastify"; // Import toast notifications
 
 const CreateProject = () => {

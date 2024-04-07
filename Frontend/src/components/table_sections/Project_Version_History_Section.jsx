@@ -1,18 +1,22 @@
 import React, { useState, useEffect } from "react"; // Importing React and necessary hooks
 import { Box } from "monday-ui-react-core"; // Importing Box component from Monday UI React Core library
 import "monday-ui-react-core/tokens"; // Importing tokens for styling
-import Table from "./Table"; // Importing custom Table component
+import Table from "../utility_components/Table"; // Importing custom Table component
 import axios from "axios"; // Importing Axios for making HTTP requests
-import "../styling/project_stakeholder_section.css"; // Importing CSS styles for the component
+import "../../styling/project_version_history_section.css"; // Importing CSS styles for the component
 import { toast } from "react-toastify"; // Importing toast notifications for displaying messages
 
-const Project_Client_Feedback_Section = ({ activeTab }) => {
-  const [clientFeedback, setClientFeedback] = useState([]); // State to manage stakeholders data
+// Project_Version_History_Section component definition
+const Project_Version_History_Section = ({ activeTab }) => {
+  // State variables to manage component data and behavior
+  const [versionHistory, setVersionHistory] = useState([]); // State to manage version history data
   const [changedTableRows, setChangedTableRows] = useState([]); // State to track changed table rows
   const [showSaveButton, setShowSaveButton] = useState(false); // State to control visibility of save button
   const [allowedUsers, setAllowedUsers] = useState([]);
 
+  // Retrieve the base URL from environment variables
   const BASE_URL = process.env.REACT_APP_BASE_URL;
+  // Extract the current pathname from the URL of the window
   const PATH_NAME = new URL(window.location.href).pathname;
 
   // Function to handle form submission
@@ -20,7 +24,7 @@ const Project_Client_Feedback_Section = ({ activeTab }) => {
     try {
       // Sending changed table rows to the server for saving
       const response = await axios.post(
-        `${BASE_URL}${PATH_NAME}/client_feedback`,
+        `${BASE_URL}${PATH_NAME}/version_history`,
         [...changedTableRows]
       );
       // Displaying success message using toast notification
@@ -33,14 +37,14 @@ const Project_Client_Feedback_Section = ({ activeTab }) => {
     }
   };
 
-  // Function to fetch stakeholders data from the server
+  // Function to fetch version history data from the server
   const fetchData = async () => {
     try {
-      // Making a GET request to fetch stakeholders data
-      const response = await fetch(`${BASE_URL}${PATH_NAME}/client_feedback`);
+      // Making a GET request to fetch version history data
+      const response = await fetch(`${BASE_URL}${PATH_NAME}/version_history`);
       const { data } = await response.json(); // Parsing response JSON
-      // Setting fetched stakeholders data to state variable
-      setClientFeedback(data);
+      // Setting fetched version history data to state variable
+      setVersionHistory(data);
 
       const project_id = PATH_NAME.split("/")[2];
       const allowedUsersResponse = await axios.get(
@@ -63,7 +67,7 @@ const Project_Client_Feedback_Section = ({ activeTab }) => {
 
   // Hook to fetch data when the component mounts
   useEffect(() => {
-    if (activeTab != 12) {
+    if (activeTab != 7) {
       return;
     }
     fetchData(); // Calling the fetchData function
@@ -80,37 +84,33 @@ const Project_Client_Feedback_Section = ({ activeTab }) => {
           </button>
         </div>
       )}
-      {/* Container for stakeholders table */}
+      {/* Container for version history table */}
       <Box className="escalation-matrix-table-container">
-        {/* Render the Table component if stakeholders data is available */}
-        {clientFeedback.length > 0 && (
+        {/* Render the Table component if version history data is available */}
+        {versionHistory.length > 0 && (
           <Table
             allowedUsers={allowedUsers}
+            // Default values for the table
             defaultValues={{
-              project_id: clientFeedback[0].project_id,
+              project_id: versionHistory[0].project_id,
             }}
+            // Roles allowed to access this table
             allowedRoles={["Admin", "Manager"]}
-            sectionTab={"client_feedback"} // Passing section tab as prop
-            setShowSaveButton={setShowSaveButton} // Passing setShowSaveButton function as prop
-            setChangedTableRows={setChangedTableRows} // Passing setChangedTableRows function as prop
-            data={clientFeedback} // Passing stakeholders data as prop
-            invalidColumns={["project_id", "_id", "__v"]} // Specifying invalid columns for table
+            // Identifier for the table section
+            sectionTab={"version_history"}
+            // Function to control the visibility of the save button
+            setShowSaveButton={setShowSaveButton}
+            // Function to update changed table rows state
+            setChangedTableRows={setChangedTableRows}
+            // Data to be displayed in the table
+            data={versionHistory}
+            // List of columns to be excluded from the table
+            invalidColumns={["project_id", "_id", "__v"]}
+            // Configuration for column types, e.g., date formatting
             columnType={[
-              // Specifying column types for table
-              {
-                key: "date_received",
-                type: "date",
-              },
-              {
-                key: "closure_date",
-                type: "date",
-              },
-              {
-                key: "feedback_type",
-                type: "dropdown",
-                options: ["Complaint", "Appreciation"],
-              },
-            ]} // Specifying column types for table
+              { key: "revision_date", type: "date" },
+              { key: "approval_date", type: "date" },
+            ]}
           />
         )}
       </Box>
@@ -118,4 +118,4 @@ const Project_Client_Feedback_Section = ({ activeTab }) => {
   );
 };
 
-export default Project_Client_Feedback_Section;
+export default Project_Version_History_Section; // Exporting the component

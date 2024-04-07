@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Navigate, Outlet } from "react-router-dom"; // Importing necessary components from react-router-dom
 import { useAuth0 } from "@auth0/auth0-react"; // Importing useAuth0 hook from Auth0 React SDK
-import AuthContext from "../context/AuthProvider"; // Importing AuthContext from context/AuthProvider
-import { fetchRoleOfUser } from "../util/users"; // Importing fetchRoleOfUser function from util/users
-import Loading from "./Loading"; // Importing Loading component
+import AuthContext from "../../context/AuthProvider"; // Importing AuthContext from context/AuthProvider
+import { fetchRoleOfUser } from "../../util/users"; // Importing fetchRoleOfUser function from util/users
+import Loading from "../utility_components/Loading"; // Importing Loading component
 import { toast } from "react-toastify"; // Importing toast notifications for displaying messages
 
 // ProtectedRoute component definition

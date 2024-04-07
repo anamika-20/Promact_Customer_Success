@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react"; // Importing React and necessary hooks
 import { Box } from "monday-ui-react-core"; // Importing Box component from Monday UI React Core library
 import "monday-ui-react-core/tokens"; // Importing tokens for styling
-import Table from "./Table"; // Importing custom Table component
+import Table from "../utility_components/Table"; // Importing custom Table component
 import axios from "axios"; // Importing Axios for making HTTP requests
-import "../styling/project_stakeholder_section.css"; // Importing CSS styles for the component
+import "../../styling/project_stakeholder_section.css"; // Importing CSS styles for the component
 import { toast } from "react-toastify"; // Importing toast notifications for displaying messages
 
-const Project_MoMs_Section = ({ activeTab }) => {
-  const [MoMs, setMoMs] = useState([]); // State to manage stakeholders data
+const Project_Project_Updates_Section = ({ activeTab }) => {
+  const [projectUpdates, setProjectUpdates] = useState([]); // State to manage stakeholders data
   const [changedTableRows, setChangedTableRows] = useState([]); // State to track changed table rows
   const [showSaveButton, setShowSaveButton] = useState(false); // State to control visibility of save button
   const [allowedUsers, setAllowedUsers] = useState([]);
@@ -19,9 +19,10 @@ const Project_MoMs_Section = ({ activeTab }) => {
   const handleSubmit = async () => {
     try {
       // Sending changed table rows to the server for saving
-      const response = await axios.post(`${BASE_URL}${PATH_NAME}/mom`, [
-        ...changedTableRows,
-      ]);
+      const response = await axios.post(
+        `${BASE_URL}${PATH_NAME}/project_updates`,
+        [...changedTableRows]
+      );
       // Displaying success message using toast notification
       toast.success("Data Saved Successfully");
       setShowSaveButton(false); // Hiding the save button after successful submission
@@ -36,10 +37,10 @@ const Project_MoMs_Section = ({ activeTab }) => {
   const fetchData = async () => {
     try {
       // Making a GET request to fetch stakeholders data
-      const response = await fetch(`${BASE_URL}${PATH_NAME}/mom`);
+      const response = await fetch(`${BASE_URL}${PATH_NAME}/project_updates`);
       const { data } = await response.json(); // Parsing response JSON
       // Setting fetched stakeholders data to state variable
-      setMoMs(data);
+      setProjectUpdates(data);
 
       const project_id = PATH_NAME.split("/")[2];
       const allowedUsersResponse = await axios.get(
@@ -62,7 +63,7 @@ const Project_MoMs_Section = ({ activeTab }) => {
 
   // Hook to fetch data when the component mounts
   useEffect(() => {
-    if (activeTab != 10) {
+    if (activeTab != 9) {
       return;
     }
     fetchData(); // Calling the fetchData function
@@ -81,26 +82,26 @@ const Project_MoMs_Section = ({ activeTab }) => {
       )}
       {/* Container for stakeholders table */}
       <Box className="escalation-matrix-table-container">
-        {/* Render the Table component if stakeholders data is available */}
-        {MoMs.length > 0 && (
+        {projectUpdates.length > 0 && (
           <Table
             allowedUsers={allowedUsers}
             defaultValues={{
-              project_id: MoMs[0].project_id,
+              project_id: projectUpdates[0].project_id,
             }}
             allowedRoles={["Admin", "Manager"]}
-            sectionTab={"MoMs"} // Passing section tab as prop
-            setShowSaveButton={setShowSaveButton} // Passing setShowSaveButton function as prop
-            setChangedTableRows={setChangedTableRows} // Passing setChangedTableRows function as prop
-            data={MoMs} // Passing stakeholders data as prop
-            invalidColumns={["project_id", "_id", "__v"]} // Specifying invalid columns for table
             columnType={[
               // Specifying column types for table
               {
                 key: "date",
                 type: "date",
               },
-            ]} // Specifying column types for table
+            ]}
+            sectionTab={"project_updates"} // Passing section tab as prop
+            setShowSaveButton={setShowSaveButton} // Passing setShowSaveButton function as prop
+            setChangedTableRows={setChangedTableRows} // Passing setChangedTableRows function as prop
+            data={projectUpdates} // Passing stakeholders data as prop
+            invalidColumns={["project_id", "_id", "__v"]} // Specifying invalid columns for table
+            // Specifying column types for table
           />
         )}
       </Box>
@@ -108,4 +109,4 @@ const Project_MoMs_Section = ({ activeTab }) => {
   );
 };
 
-export default Project_MoMs_Section;
+export default Project_Project_Updates_Section;

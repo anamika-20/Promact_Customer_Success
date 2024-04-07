@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid"; // Importing UUID library for generating unique IDs
-import AuthContext from "../context/AuthProvider"; // Importing AuthContext from context/AuthProvider
+import AuthContext from "../../context/AuthProvider"; // Importing AuthContext from context/AuthProvider
 import { useAuth0 } from "@auth0/auth0-react"; // Importing useAuth0 hook from Auth0 React SDK
-import "../styling/request-access.css";
+import "../../styling/request-access.css";
 import { FaCheck } from "react-icons/fa6";
 import { RxCross2 } from "react-icons/rx";
 import { toast, ToastContainer } from "react-toastify"; // Importing toast notifications for displaying messages
@@ -39,7 +39,7 @@ const RequestAccess = () => {
       setEditRequests([user_request]);
       const { data } = await response.json();
     } catch (error) {
-     toast.error("Error while Creating Edit Request")
+      toast.error("Error while Creating Edit Request");
     }
   };
 
@@ -49,7 +49,7 @@ const RequestAccess = () => {
       const { data: requests } = response;
       setEditRequests(requests.data);
     } catch (error) {
-      toast.error("Error while Fetching user Request")
+      toast.error("Error while Fetching user Request");
     }
   };
 
@@ -62,7 +62,7 @@ const RequestAccess = () => {
       const { data: requests } = response;
       setEditRequests(requests.data);
     } catch (error) {
-      toast.error("Error while Fetching Project Edit Requests")
+      toast.error("Error while Fetching Project Edit Requests");
     }
   };
 
@@ -94,7 +94,7 @@ const RequestAccess = () => {
 
       toast.success("Request Status Updated Successfully");
     } catch (error) {
-      toast.error("Error while Updating Request Status")
+      toast.error("Error while Updating Request Status");
     }
   };
 

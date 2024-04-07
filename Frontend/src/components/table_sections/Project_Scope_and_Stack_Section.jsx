@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useContext } from "react"; // Importing React and necessary hooks
 import { Dropdown } from "monday-ui-react-core"; // Importing Dropdown component from Monday UI React Core library
 import "monday-ui-react-core/tokens"; // Importing tokens for styling
-import "../styling/project_scope_and_stack_section.css"; // Importing CSS styles for the component
+import "../../styling/project_scope_and_stack_section.css"; // Importing CSS styles for the component
 import axios from "axios"; // Importing Axios for making HTTP requests
 import { toast } from "react-toastify"; // Importing toast notifications for displaying messages
-import AuthContext from "../context/AuthProvider";
+import AuthContext from "../../context/AuthProvider";
 
 // Scope_and_Stack_Section component definition
 const Scope_and_Stack_Section = ({ activeTab }) => {
