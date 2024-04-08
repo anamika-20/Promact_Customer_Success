@@ -9,14 +9,14 @@ const {
   alterEditRequest,
   deleteProject,
   addProjectChanges,
-} = require("../Controller/Project_postRequests.js");
+} = require("../Controller/Project/Project_postRequests.js");
 
 // Importing controller functions for handling GET request for project
 const {
   getUserProjects, // Retrieves user projects data
   getEditRequest,
   getProjectEditRequest,
-} = require("../Controller/Project_getRequests.js");
+} = require("../Controller/Project/Project_getRequests.js");
 
 const { fetchManagers } = require("../Controller/manager.js");
 

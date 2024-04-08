@@ -13,16 +13,12 @@ const {
   alterSprintDetails, // Alters sprint details
   alterStakeholders, // Alters stakeholders data
   alterVersionHistory, // Alters version history
-  addProject, // Adds a new project
   alterResources, // Alters resources data
   alterApprovedTeams, // Alters approved teams data
   alterClientFeedback, // Alters client feedback data
   alterMoMs, // Alters minutes of meeting data
   alterProjectUpdates, // Alters project updates data
-  alterEditRequest,
-  deleteProject,
-  addProjectChanges,
-} = require("../Controller/Project_postRequests.js");
+} = require("../Controller/Project/Project_postRequests.js");
 
 // Importing controller functions for handling GET request for project
 const {
@@ -34,15 +30,12 @@ const {
   getSprintDetails, // Retrieves sprint details
   getStakeholders, // Retrieves stakeholders data
   getVersionHistory, // Retrieves version history
-  getUserProjects, // Retrieves user projects data
   getApprovedTeams, // Retrieves approved teams data
   getClientFeedback, // Retrieves client feedback data
   getMoMs, // Retrieves minutes of meeting data
   getProjectUpdates, // Retrieves project updates data
   getResources, // Retrieves resources data
-  getEditRequest,
-  getProjectEditRequest,
-} = require("../Controller/Project_getRequests.js");
+} = require("../Controller/Project/Project_getRequests.js");
 
 // Route for fetching or altering project details
 router
