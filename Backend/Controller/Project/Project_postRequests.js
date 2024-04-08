@@ -1,19 +1,19 @@
 // Importing required models and utility functions
-const project = require("../Model/Project"); // Importing Project model
-const audit_history = require("../Model/Audit_History"); // Importing Audit History model
-const version_history = require("../Model/Version_History"); // Importing Version History model
-const sprint_details = require("../Model/Sprint_Details"); // Importing Sprint Details model
-const stakeholders = require("../Model/Stakeholders"); // Importing Stakeholders model
-const phases = require("../Model/Phases"); // Importing Phases model
-const escalation_matrix = require("../Model/Escalation_Matrix"); // Importing Escalation Matrix model
-const risk_profiling = require("../Model/Risk_Profiling"); // Importing Risk Profiling model
-const resources = require("../Model/Resources.js");
-const client_feedback = require("../Model/Client_Feedback.js");
-const approved_team = require("../Model/Approved_Team.js");
-const mom = require("../Model/MoMs.js");
-const project_updates = require("../Model/Project_Updates.js");
-const edit_requests = require("../Model/EditRequests.js");
-const project_changes = require("../Model/ProjectChanges.js");
+const project = require("../../Model/Project.js"); // Importing Project model
+const audit_history = require("../../Model/Audit_History.js"); // Importing Audit History model
+const version_history = require("../../Model/Version_History.js"); // Importing Version History model
+const sprint_details = require("../../Model/Sprint_Details.js"); // Importing Sprint Details model
+const stakeholders = require("../../Model/Stakeholders.js"); // Importing Stakeholders model
+const phases = require("../../Model/Phases.js"); // Importing Phases model
+const escalation_matrix = require("../../Model/Escalation_Matrix.js"); // Importing Escalation Matrix model
+const risk_profiling = require("../../Model/Risk_Profiling.js"); // Importing Risk Profiling model
+const resources = require("../../Model/Resources.js");
+const client_feedback = require("../../Model/Client_Feedback.js");
+const approved_team = require("../../Model/Approved_Team.js");
+const mom = require("../../Model/MoMs.js");
+const project_updates = require("../../Model/Project_Updates.js");
+const edit_requests = require("../../Model/EditRequests.js");
+const project_changes = require("../../Model/ProjectChanges.js");
 
 // Function to add a new project
 const addProject = async (req, res) => {
