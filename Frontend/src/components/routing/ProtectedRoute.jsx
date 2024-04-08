@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import { Navigate, Outlet } from "react-router-dom"; // Importing necessary components from react-router-dom
 import { useAuth0 } from "@auth0/auth0-react"; // Importing useAuth0 hook from Auth0 React SDK
 import AuthContext from "../../context/AuthProvider"; // Importing AuthContext from context/AuthProvider
@@ -7,7 +7,7 @@ import Loading from "../utility_components/Loading"; // Importing Loading compon
 import { toast } from "react-toastify"; // Importing toast notifications for displaying messages
 
 // ProtectedRoute component definition
-const ProtectedRoute = ({ element }) => {
+const ProtectedRoute = () => {
   // Using useContext to access AuthContext values
   const { auth, setAuth } = useContext(AuthContext);
   // Destructuring values from useAuth0 hook
@@ -19,7 +19,7 @@ const ProtectedRoute = ({ element }) => {
       // Fetching user role from the server
       const res = await fetchRoleOfUser(user.sub);
       // Setting user role in AuthContext
-     
+
       setAuth({ id: user.sub, role: res[0].name, user });
     } catch (error) {
       // Displaying error message using toast notification
