@@ -8,7 +8,7 @@ import {
   TabPanels,
 } from "monday-ui-react-core"; // Importing necessary components from Monday UI React Core library
 import "monday-ui-react-core/tokens"; // Importing tokens for styling
-import "../../styling/project.css"; // Importing CSS styles for the component
+import "src/styling/project.css"; // Importing CSS styles for the component
 import { FaRegFilePdf, FaUserLock } from "react-icons/fa6";
 import { AiOutlineFileSync } from "react-icons/ai";
 import { RxCross2 } from "react-icons/rx";

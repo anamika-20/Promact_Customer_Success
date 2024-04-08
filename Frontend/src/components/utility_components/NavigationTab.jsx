@@ -1,10 +1,10 @@
 // Import necessary modules and files
 import React, { useEffect, useState, useContext } from "react";
-import "../../styling/navigation-tab.css"; // Import CSS file for styling
+import "src/styling/navigation-tab.css"; // Import CSS file for styling
 import { useNavigate } from "react-router-dom"; // Navigation hook for routing
-import { fetchUsersByRole } from "../../util/users"; // Function to fetch users by role
+import { fetchUsersByRole } from "src/util/users"; // Function to fetch users by role
 import axios from "axios"; // HTTP client for making requests
-import AuthContext from "../../context/AuthProvider"; // Context for authentication
+import AuthContext from "src/context/AuthProvider"; // Context for authentication
 import { toast } from "react-toastify"; // Toast notifications
 
 // Function to generate table based on data

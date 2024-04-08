@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import "../../styling/create-project.css";
+import "src/styling/create-project.css";
 import { v4 as uuidv4 } from "uuid"; // Import UUID generator
-import { createNewUser } from "../../util/users.js"; // Import utility function for creating a new user
+import { createNewUser } from "src/util/users.js"; // Import utility function for creating a new user
 import { toast } from "react-toastify"; // Import toast notifications
 
 const CreateUser = () => {

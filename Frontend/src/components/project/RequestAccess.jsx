@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid"; // Importing UUID library for generating unique IDs
-import AuthContext from "../../context/AuthProvider"; // Importing AuthContext from context/AuthProvider
+import AuthContext from "src/context/AuthProvider"; // Importing AuthContext from context/AuthProvider
 import { useAuth0 } from "@auth0/auth0-react"; // Importing useAuth0 hook from Auth0 React SDK
-import "../../styling/request-access.css";
+import "src/styling/request-access.css";
 import { FaCheck } from "react-icons/fa6";
 import { RxCross2 } from "react-icons/rx";
 import { toast, ToastContainer } from "react-toastify"; // Importing toast notifications for displaying messages

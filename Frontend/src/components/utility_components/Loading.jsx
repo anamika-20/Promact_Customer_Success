@@ -1,6 +1,6 @@
 import React from "react";
 import { ThreeDots } from "react-loader-spinner"; // Import loader spinner component
-import "../../styling/loading.css"; // Import CSS file for styling
+import "src/styling/loading.css"; // Import CSS file for styling
 
 // Loading component
 const Loading = () => {

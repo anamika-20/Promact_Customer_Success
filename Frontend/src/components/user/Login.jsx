@@ -1,6 +1,6 @@
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react"; // Import Auth0 hook for authentication
-import "../../styling/login.css"; // Import CSS file for styling
+import "src/styling/login.css"; // Import CSS file for styling
 
 // Login component
 const Login = () => {

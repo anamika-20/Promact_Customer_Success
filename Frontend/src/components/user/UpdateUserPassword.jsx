@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
-import "../../styling/update-user-password.css";
+import "src/styling/update-user-password.css";
 import { toast, ToastContainer } from "react-toastify";
-import { updateUserPassword } from "../../util/users";
+import { updateUserPassword } from "src/util/users";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const CreateUserLogin = () => {

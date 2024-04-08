@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"; // Importing necessary dependencies from React
 import { Box, Flex } from "monday-ui-react-core"; // Importing Box and Flex components from Monday UI React Core library
-import Table from "../utility_components/Table"; // Importing custom Table component
-import "../../styling/project_escalation_matrix_section.css"; // Importing CSS styles for the component
+import Table from "src/components/utility_components/Table"; // Importing custom Table component
+import "src/styling/project_escalation_matrix_section.css"; // Importing CSS styles for the component
 import axios from "axios"; // Importing Axios for making HTTP requests
 import { toast } from "react-toastify"; // Importing toast notifications for displaying messages
 

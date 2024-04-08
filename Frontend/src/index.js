@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client"; // Import ReactDOM for rendering
-import App from "./App"; // Import the App component
-import { AuthProvider } from "./context/AuthProvider"; // Import AuthProvider for authentication context
+import App from "src/App"; // Import the App component
+import { AuthProvider } from "src/context/AuthProvider"; // Import AuthProvider for authentication context
 import { BrowserRouter, Route, Routes } from "react-router-dom"; // Import BrowserRouter and Route components for routing
 import { Auth0Provider } from "@auth0/auth0-react"; // Import Auth0Provider for Auth0 authentication
 

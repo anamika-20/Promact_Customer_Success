@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react"; // Importing necessary dependencies from React
 import { Box } from "monday-ui-react-core"; // Importing Box component from Monday UI React Core library
 import "monday-ui-react-core/tokens"; // Importing Monday UI React Core tokens
-import Table from "../utility_components/Table"; // Importing custom Table component
+import Table from "src/components/utility_components/Table"; // Importing custom Table component
 import axios from "axios"; // Importing Axios for making HTTP requests
-import "../../styling/project_audit_history_section.css"; // Importing CSS styles for the component
+import "src/styling/project_audit_history_section.css"; // Importing CSS styles for the component
 import { toast } from "react-toastify"; // Importing toast notifications for displaying messages
 
 // Project_Audit_History_Section component definition

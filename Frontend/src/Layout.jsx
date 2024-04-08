@@ -1,7 +1,7 @@
 import React from "react";
-import TopBar from "./components/header/TopBar"; // Importing the TopBar component
-import Sidebar from "./components/sidebar/Sidebar"; // Importing the Sidebar component
-import "./styling/layout.css"; // Importing the layout styling
+import TopBar from "src/components/header/TopBar"; // Importing the TopBar component
+import Sidebar from "src/components/sidebar/Sidebar"; // Importing the Sidebar component
+import "src/styling/layout.css"; // Importing the layout styling
 import { Box, Flex } from "monday-ui-react-core"; // Importing Box and Flex components from monday-ui-react-core library
 import { ToastContainer } from "react-toastify"; // Importing ToastContainer component from react-toastify library
 import "react-toastify/dist/ReactToastify.css"; // Importing Toastify CSS

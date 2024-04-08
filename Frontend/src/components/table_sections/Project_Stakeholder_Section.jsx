@@ -3,7 +3,7 @@ import { Box } from "monday-ui-react-core"; // Importing Box component from Mond
 import "monday-ui-react-core/tokens"; // Importing tokens for styling
 import Table from "../utility_components/Table"; // Importing custom Table component
 import axios from "axios"; // Importing Axios for making HTTP requests
-import "../../styling/project_stakeholder_section.css"; // Importing CSS styles for the component
+import "src/styling/project_stakeholder_section.css"; // Importing CSS styles for the component
 import { toast } from "react-toastify"; // Importing toast notifications for displaying messages
 
 // Project_Stakeholder_Section component definition
