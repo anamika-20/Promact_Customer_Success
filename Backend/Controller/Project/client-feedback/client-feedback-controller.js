@@ -1,4 +1,5 @@
-const client_feedback = require("../../Model/Client_Feedback.js");
+const client_feedback = require("../../../Model/client-feedback.js");
+const { reorderArrayOfObject } = require("../../../Utilities/utility.js"); // Importing utility function for reordering arrays of objects
 
 // Function to get client feedback for a specific project
 const getClientFeedback = async (req, res) => {

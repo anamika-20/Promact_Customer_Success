@@ -1,4 +1,6 @@
-const approved_team = require("../../../Model/Approved_Team.js");
+const approved_team = require("../../../Model/approved-team.js");
+const phases = require("../../../Model/phases.js"); // Importing Phases model
+const { reorderArrayOfObject } = require("../../../Utilities/utility.js"); // Importing utility function for reordering arrays of objects
 
 // Function to get approved teams for a specific project
 const getApprovedTeams = async (req, res) => {

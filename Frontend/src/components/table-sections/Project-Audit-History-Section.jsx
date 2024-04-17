@@ -3,7 +3,7 @@ import { Box } from "monday-ui-react-core"; // Importing Box component from Mond
 import "monday-ui-react-core/tokens"; // Importing Monday UI React Core tokens
 import Table from "src/components/utility-components/Table"; // Importing custom Table component
 import axios from "axios"; // Importing Axios for making HTTP requests
-import "src/styling/project_audit_history_section.css"; // Importing CSS styles for the component
+import "src/styling/project-audit-history-section.css"; // Importing CSS styles for the component
 import { toast } from "react-toastify"; // Importing toast notifications for displaying messages
 
 // Project_Audit_History_Section component definition
@@ -23,7 +23,7 @@ const Project_Audit_History_Section = ({ activeTab }) => {
     try {
       // Sending changed table rows data to the server for saving
       const response = await axios.post(
-        `${BASE_URL}${PATH_NAME}/audit_history`,
+        `${BASE_URL}${PATH_NAME}/audit-history`,
         [...changedTableRows]
       );
       // Displaying success message using toast notification
@@ -34,7 +34,7 @@ const Project_Audit_History_Section = ({ activeTab }) => {
 
       // Sending email with changed table rows data
       const sendmail_response = await axios.post(
-        `${BASE_URL}${PATH_NAME}/sendEmail`,
+        `${BASE_URL}${PATH_NAME}/send-email`,
         [...changedTableRows]
       );
     } catch (error) {
@@ -47,7 +47,7 @@ const Project_Audit_History_Section = ({ activeTab }) => {
   const fetchData = async () => {
     try {
       // Fetching audit history data from the server
-      const response = await fetch(`${BASE_URL}${PATH_NAME}/audit_history`);
+      const response = await fetch(`${BASE_URL}${PATH_NAME}/audit-history`);
       const { data } = await response.json();
       // Setting the fetched audit history data to state variable
       setAuditHistory(data);

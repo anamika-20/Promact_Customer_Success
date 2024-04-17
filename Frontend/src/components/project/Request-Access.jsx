@@ -33,7 +33,7 @@ const RequestAccess = () => {
       };
 
       const response = await axios.post(
-        `${BASE_URL}/edit-request/${user.sub}`,
+        `${BASE_URL}/user-edit-request/${user.sub}`,
         [user_request]
       );
       setEditRequests([user_request]);
@@ -45,7 +45,7 @@ const RequestAccess = () => {
 
   const fetchUserRequest = async () => {
     try {
-      const response = await axios.get(`${BASE_URL}/edit-request/${user.sub}`);
+      const response = await axios.get(`${BASE_URL}/user-edit-request/${user.sub}`);
       const { data: requests } = response;
       setEditRequests(requests.data);
     } catch (error) {
@@ -88,7 +88,7 @@ const RequestAccess = () => {
 
       setEditRequests(updatedRequests);
       const response = await axios.post(
-        `${BASE_URL}/edit-request/${user.sub}`,
+        `${BASE_URL}/user-edit-request/${user.sub}`,
         [updatedRequest]
       );
 

@@ -46,7 +46,7 @@ const Project = () => {
   const handleExportButton = async () => {
     try {
       // Making a GET request to generate PDF
-      const response = await fetch(`${BASE_URL}${PATH_NAME}/genPDF`);
+      const response = await fetch(`${BASE_URL}${PATH_NAME}/gen-pdf`);
     } catch (error) {
       toast.error("Error while Generating PDF");
     }
@@ -65,7 +65,7 @@ const Project = () => {
         {/* Container for export button */}
         <div className="action-button-container">
           {/* Export button */}
-          <a href={`${BASE_URL}${PATH_NAME}/genPDF`} download>
+          <a href={`${BASE_URL}${PATH_NAME}/gen-pdf`} download>
             {/* Anchor tag to initiate PDF download */}
             <button className="export-button" onClick={handleExportButton}>
               <FaRegFilePdf />

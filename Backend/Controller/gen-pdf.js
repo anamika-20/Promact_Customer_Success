@@ -11,7 +11,7 @@ const addProjectDetailsPage = async (filename, doc, id) => {
   try {
     // Fetching project details data from the server
     let response = await fetch(
-      `${process.env.APP_BACKEND_URL}/project/${id}/project_details`
+      `${process.env.APP_BACKEND_URL}/project/${id}/project-details`
     );
     let { data } = await response.json();
     data = data[0]; // Extracting first element as project details
@@ -51,17 +51,17 @@ const addProjectTablesPage = async (filename, doc, id) => {
   try {
     // Routes for fetching different project-related data
     let routes = [
-      `project/${id}/escalation_matrix`,
-      `project/${id}/version_history`,
+      `project/${id}/escalation-matrix`,
+      `project/${id}/version-history`,
       `project/${id}/stakeholders`,
-      `project/${id}/sprint_details`,
-      `project/${id}/risk_profiling`,
-      `project/${id}/audit_history`,
-      `project/${id}/approved_teams`,
+      `project/${id}/sprint-details`,
+      `project/${id}/risk-profiling`,
+      `project/${id}/audit-history`,
+      `project/${id}/approved-teams`,
       `project/${id}/resources`,
-      `project/${id}/client_feedback`,
+      `project/${id}/client-feedback`,
       `project/${id}/mom`,
-      `project/${id}/project_updates`,
+      `project/${id}/project-updates`,
     ];
 
     // Looping through each route to fetch and add data to the PDF
@@ -117,6 +117,7 @@ const generatePDF = async (req, res) => {
     });
   } catch (error) {
     // Sending error response if any occurs
+    console.log(error)
     res.status(500).json({ message: "Error while Generating PDF" });
   }
 };

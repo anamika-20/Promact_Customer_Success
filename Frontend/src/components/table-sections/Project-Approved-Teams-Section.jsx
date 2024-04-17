@@ -3,7 +3,7 @@ import { Box } from "monday-ui-react-core"; // Importing Box component from Mond
 import "monday-ui-react-core/tokens"; // Importing tokens for styling
 import Table from "src/components/utility-components/Table"; // Importing custom Table component
 import axios from "axios"; // Importing Axios for making HTTP requests
-import "src/styling/project_approved_teams_section.css"; // Importing CSS styles for the component
+import "src/styling/project-approved-teams-section.css"; // Importing CSS styles for the component
 import { toast } from "react-toastify"; // Importing toast notifications for displaying messages
 
 const Project_Approved_Teams_Section = ({ activeTab }) => {
@@ -29,7 +29,7 @@ const Project_Approved_Teams_Section = ({ activeTab }) => {
     try {
       // Sending POST request to save changed table rows
       const response = await axios.post(
-        `${BASE_URL}${PATH_NAME}/approved_teams`,
+        `${BASE_URL}${PATH_NAME}/approved-teams`,
         [...changedTableRows]
       );
       // Displaying success message using toast notification
@@ -63,7 +63,7 @@ const Project_Approved_Teams_Section = ({ activeTab }) => {
   const fetchData = async () => {
     try {
       // Fetching approved teams data from server
-      const response = await fetch(`${BASE_URL}${PATH_NAME}/approved_teams`);
+      const response = await fetch(`${BASE_URL}${PATH_NAME}/approved-teams`);
       // Parsing response JSON
       const { data } = await response.json();
       // Setting approved teams data

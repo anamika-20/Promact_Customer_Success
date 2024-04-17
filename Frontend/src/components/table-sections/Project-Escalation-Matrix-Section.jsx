@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"; // Importing necessary dependencies from React
 import { Box, Flex } from "monday-ui-react-core"; // Importing Box and Flex components from Monday UI React Core library
 import Table from "src/components/utility-components/Table"; // Importing custom Table component
-import "src/styling/project_escalation_matrix_section.css"; // Importing CSS styles for the component
+import "src/styling/project-escalation-matrix-section.css"; // Importing CSS styles for the component
 import axios from "axios"; // Importing Axios for making HTTP requests
 import { toast } from "react-toastify"; // Importing toast notifications for displaying messages
 
@@ -24,7 +24,7 @@ const Project_Escalation_Matrix_Section = ({ activeTab }) => {
     try {
       // Sending changed table rows data to the server for saving
       const response = await axios.post(
-        `${BASE_URL}${PATH_NAME}/escalation_matrix`,
+        `${BASE_URL}${PATH_NAME}/escalation-matrix`,
         [...changedTableRows]
       );
       // Displaying success message using toast notification
@@ -42,7 +42,7 @@ const Project_Escalation_Matrix_Section = ({ activeTab }) => {
   const fetchData = async () => {
     try {
       // Fetching escalation matrix data from the server
-      const response = await fetch(`${BASE_URL}${PATH_NAME}/escalation_matrix`);
+      const response = await fetch(`${BASE_URL}${PATH_NAME}/escalation-matrix`);
       const { data } = await response.json();
       // Setting the fetched escalation matrix data to state variable
       setEscalationMatrix(data);

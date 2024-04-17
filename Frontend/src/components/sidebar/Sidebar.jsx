@@ -30,7 +30,7 @@ const Sidebar = () => {
           {auth.role === "Admin" && (
             <NavLink to="/addUser" className="menu-button-container">
               <button className="menu-button">
-                <i class="fas fa-user-plus" style={{ color: "#ffffff" }}></i>{" "}
+                <i class="fas fa-user-plus" style={{ color: "#ffffff" }}></i>
                 {/* User plus icon */}
                 <label>add user</label>
               </button>

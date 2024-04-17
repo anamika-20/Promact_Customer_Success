@@ -54,7 +54,7 @@ function generatePassword() {
 // Function to send an invitation email to the new user
 const sendInviteMail = async (user_details) => {
   try {
-    const data = await axios.post(`${BASE_URL}/sendEmail/invite`, {
+    const data = await axios.post(`${BASE_URL}/email/invite`, {
       ...user_details,
     });
   } catch (error) {

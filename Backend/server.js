@@ -3,7 +3,7 @@ require("dotenv").config(); // dotenv module for loading environment variables f
 const express = require("express"); // Express.js framework for building web applications
 const cors = require("cors"); // CORS middleware for enabling Cross-Origin Resource Sharing
 const app = express(); // Creating an instance of the Express application
-const router = require("./Routes/main_route"); // Importing the router module defined in the route.js file
+const router = require("./Routes/main-route"); // Importing the router module defined in the route.js file
 const connectDB = require("./DB/connect.js"); // Function for connecting to the database
 
 // Middleware setup

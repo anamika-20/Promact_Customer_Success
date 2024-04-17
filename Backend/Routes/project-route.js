@@ -3,58 +3,106 @@ const router = express.Router();
 const { generatePDF } = require("../Controller/gen-pdf.js"); // Importing function for generating PDF files
 const { sendMail } = require("../Controller/email.js"); // Importing function for sending emails
 
-// Importing controller functions for handling POST request for project
-const {
-  alterProjectDetails, // Alters project details
-  alterEscalationMatrix, // Alters escalation matrix
-  alterAuditHistory, // Alters audit history
-  alterPhases, // Alters phases
-  alterRiskProfiling, // Alters risk profiling data
-  alterSprintDetails, // Alters sprint details
-  alterStakeholders, // Alters stakeholders data
-  alterVersionHistory, // Alters version history
-  alterResources, // Alters resources data
-  alterApprovedTeams, // Alters approved teams data
-  alterClientFeedback, // Alters client feedback data
-  alterMoMs, // Alters minutes of meeting data
-  alterProjectUpdates, // Alters project updates data
-  deleteProject
-} = require("../Controller/Project/Project_postRequests.js");
 
-// Importing controller functions for handling GET request for project
 const {
-  getProjectDetails, // Retrieves project details
-  getAuditHistory, // Retrieves audit history
-  getEscalationMatrix, // Retrieves escalation matrix
-  getPhases, // Retrieves phases
-  getRiskProfiling, // Retrieves risk profiling data
-  getSprintDetails, // Retrieves sprint details
-  getStakeholders, // Retrieves stakeholders data
-  getVersionHistory, // Retrieves version history
-  getApprovedTeams, // Retrieves approved teams data
-  getClientFeedback, // Retrieves client feedback data
-  getMoMs, // Retrieves minutes of meeting data
-  getProjectUpdates, // Retrieves project updates data
-  getResources, // Retrieves resources data
-} = require("../Controller/Project/Project_getRequests.js");
+  alterProjectDetails,
+  getProjectDetails,
+} = require("../Controller/Project/project-details/project-details-controller.js");
 
-router.route('/:project_id').delete(deleteProject)
+const {
+  getEscalationMatrix,
+  alterEscalationMatrix,
+} = require("../Controller/Project/escalation-matrix/escalation-matrix-controller.js");
+
+const {
+  getAuditHistory,
+  alterAuditHistory,
+} = require("../Controller/Project/audit-history/audit-history-controller.js");
+
+const {
+  getApprovedTeams,
+  alterApprovedTeams,
+} = require("../Controller/Project/approved-team/approved-team-controller.js");
+
+const {
+  getClientFeedback,
+  alterClientFeedback,
+} = require("../Controller/Project/client-feedback/client-feedback-controller.js");
+
+const {
+  getMoMs,
+  alterMoMs,
+} = require("../Controller/Project/moms/moms-controller.js");
+
+const {
+  getPhases,
+  alterPhases,
+} = require("../Controller/Project/phases/phases-controller.js");
+
+const {
+  addProjectChanges,
+} = require("../Controller/Project/project-changes/project-changes-controller.js");
+
+const {
+  addProject,
+  deleteProject,
+} = require("../Controller/Project/project-management/project-management-controller.js");
+
+const {
+  getProjectUpdates,
+  alterProjectUpdates,
+} = require("../Controller/Project/project-updates/project-updates-controller.js");
+
+const {
+  getResources,
+  alterResources,
+} = require("../Controller/Project/resources/resources-controller.js");
+
+const {
+  getRiskProfiling,
+  alterRiskProfiling,
+} = require("../Controller/Project/risk-profiling/risk-profiling-controller.js");
+
+const {
+  getSprintDetails,
+  alterSprintDetails,
+} = require("../Controller/Project/sprint-details/sprint-details-controller.js");
+
+const {
+  getStakeholders,
+  alterStakeholders,
+} = require("../Controller/Project/stakeholders/stakeholders-controller.js");
+
+const {
+  getUserProjects,
+} = require("../Controller/Project/user-associated-projects/user-associated-projects-controller.js");
+
+const {
+  getVersionHistory,
+  alterVersionHistory,
+} = require("../Controller/Project/version-history/version-history-controller.js");
+
+router.route("/:project_id").delete(deleteProject);
+
+router.route("/").get(getUserProjects).post(addProject);
+
+router.route("/changes").post(addProjectChanges);
 
 // Route for fetching or altering project details
 router
-  .route("/:id/project_details")
+  .route("/:id/project-details")
   .get(getProjectDetails) // GET request to fetch project details
   .post(alterProjectDetails); // POST request to alter project details
 
 // Route for fetching or altering audit history
 router
-  .route("/:id/audit_history")
+  .route("/:id/audit-history")
   .get(getAuditHistory) // GET request to fetch audit history
   .post(alterAuditHistory); // POST request to alter audit history
 
 // Route for fetching or altering escalation matrix
 router
-  .route("/:id/escalation_matrix")
+  .route("/:id/escalation-matrix")
   .get(getEscalationMatrix) // GET request to fetch escalation matrix
   .post(alterEscalationMatrix); // POST request to alter escalation matrix
 
@@ -66,13 +114,13 @@ router
 
 // Route for fetching or altering risk profiling data
 router
-  .route("/:id/risk_profiling")
+  .route("/:id/risk-profiling")
   .get(getRiskProfiling) // GET request to fetch risk profiling data
   .post(alterRiskProfiling); // POST request to alter risk profiling data
 
 // Route for fetching or altering sprint details
 router
-  .route("/:id/sprint_details")
+  .route("/:id/sprint-details")
   .get(getSprintDetails) // GET request to fetch sprint details
   .post(alterSprintDetails); // POST request to alter sprint details
 
@@ -84,19 +132,19 @@ router
 
 // Route for fetching or altering version history
 router
-  .route("/:id/version_history")
+  .route("/:id/version-history")
   .get(getVersionHistory) // GET request to fetch version history
   .post(alterVersionHistory); // POST request to alter version history
 
 // Route for sending emails
-router.route("/:id/sendEmail").post(sendMail);
+router.route("/:id/send-email").post(sendMail);
 
 // Route for generating PDF files
-router.route("/:id/genPDF").get(generatePDF);
+router.route("/:id/gen-pdf").get(generatePDF);
 
 // Routes for fetching or altering approved teams data
 router
-  .route("/:id/approved_teams")
+  .route("/:id/approved-teams")
   .get(getApprovedTeams) // GET request to fetch approved teams data
   .post(alterApprovedTeams); // POST request to alter approved teams data
 
@@ -108,7 +156,7 @@ router
 
 // Routes for fetching or altering client feedback data
 router
-  .route("/:id/client_feedback")
+  .route("/:id/client-feedback")
   .get(getClientFeedback) // GET request to fetch client feedback data
   .post(alterClientFeedback); // POST request to alter client feedback data
 
@@ -120,7 +168,7 @@ router
 
 // Routes for fetching or altering project updates data
 router
-  .route("/:id/project_updates")
+  .route("/:id/project-updates")
   .get(getProjectUpdates) // GET request to fetch project updates data
   .post(alterProjectUpdates); // POST request to alter project updates data
 

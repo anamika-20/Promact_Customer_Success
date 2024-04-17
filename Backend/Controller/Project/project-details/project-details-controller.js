@@ -1,4 +1,4 @@
-const project = require("../../../Model/Project.js"); // Importing Project model
+const project = require("../../../Model/project.js"); // Importing Project model
 
 // Function to fetch project details
 const getProjectDetails = async (req, res) => {

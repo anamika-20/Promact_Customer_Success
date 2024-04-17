@@ -1,4 +1,5 @@
-const resources = require("../../../Model/Resources.js");
+const resources = require("../../../Model/resources.js");
+const { reorderArrayOfObject } = require("../../../Utilities/utility.js"); // Importing utility function for reordering arrays of objects
 
 // Function to get resources for a specific project
 const getResources = async (req, res) => {

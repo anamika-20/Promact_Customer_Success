@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react"; // Importing React and necessary hooks
 import { Dropdown } from "monday-ui-react-core"; // Importing Dropdown component from Monday UI React Core library
 import "monday-ui-react-core/tokens"; // Importing tokens for styling
-import "src/styling/project_scope_and_stack_section.css"; // Importing CSS styles for the component
+import "src/styling/project-scope-and-stack-section.css"; // Importing CSS styles for the component
 import axios from "axios"; // Importing Axios for making HTTP requests
 import { toast } from "react-toastify"; // Importing toast notifications for displaying messages
 import AuthContext from "src/context/Auth-Provider";
@@ -38,7 +38,7 @@ const Scope_and_Stack_Section = ({ activeTab }) => {
       }
       // Sending project details to the server for saving
       const { data } = await axios.post(
-        `${BASE_URL}${PATH_NAME}/project_details`,
+        `${BASE_URL}${PATH_NAME}/project-details`,
         {
           projectDetails,
         }
@@ -77,7 +77,7 @@ const Scope_and_Stack_Section = ({ activeTab }) => {
   // Function to fetch project details from the server
   const fetchData = async () => {
     try {
-      const response = await fetch(`${BASE_URL}${PATH_NAME}/project_details`);
+      const response = await fetch(`${BASE_URL}${PATH_NAME}/project-details`);
       const { data } = await response.json();
       // Setting fetched project details to state variable
       setProjectDetails(data[0]);

@@ -248,7 +248,7 @@ function NavigationTab({ data, setData }) {
   const handleSave = async (row) => {
     try {
       const response = await axios.post(
-        `${BASE_URL}/project/${row._id}/project_details`,
+        `${BASE_URL}/project/${row._id}/project-details`,
         {
           projectDetails: row,
         }

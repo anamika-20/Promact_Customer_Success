@@ -3,7 +3,7 @@ import { Box } from "monday-ui-react-core"; // Importing Box component from Mond
 import "monday-ui-react-core/tokens"; // Importing tokens for styling
 import Table from "src/components/utility-components/Table"; // Importing custom Table component
 import axios from "axios"; // Importing Axios for making HTTP requests
-import "src/styling/project_version_history_section.css"; // Importing CSS styles for the component
+import "src/styling/project-version-history-section.css"; // Importing CSS styles for the component
 import { toast } from "react-toastify"; // Importing toast notifications for displaying messages
 
 // Project_Version_History_Section component definition
@@ -24,7 +24,7 @@ const Project_Version_History_Section = ({ activeTab }) => {
     try {
       // Sending changed table rows to the server for saving
       const response = await axios.post(
-        `${BASE_URL}${PATH_NAME}/version_history`,
+        `${BASE_URL}${PATH_NAME}/version-history`,
         [...changedTableRows]
       );
       // Displaying success message using toast notification
@@ -41,7 +41,7 @@ const Project_Version_History_Section = ({ activeTab }) => {
   const fetchData = async () => {
     try {
       // Making a GET request to fetch version history data
-      const response = await fetch(`${BASE_URL}${PATH_NAME}/version_history`);
+      const response = await fetch(`${BASE_URL}${PATH_NAME}/version-history`);
       const { data } = await response.json(); // Parsing response JSON
       // Setting fetched version history data to state variable
       setVersionHistory(data);

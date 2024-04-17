@@ -1,4 +1,5 @@
-const project_updates = require("../../../Model/Project_Updates.js");
+const project_updates = require("../../../Model/project-updates.js");
+const { reorderArrayOfObject } = require("../../../Utilities/utility.js"); // Importing utility function for reordering arrays of objects
 
 // Function to get project updates for a specific project
 const getProjectUpdates = async (req, res) => {

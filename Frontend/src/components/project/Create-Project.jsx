@@ -108,7 +108,7 @@ const CreateProject = () => {
         status: "On-Going", // Initial project status
         start_date: currentDate, // Start date of project
       };
-      const project_response = await axios.post(`${BASE_URL}/addProject`, {
+      const project_response = await axios.post(`${BASE_URL}/project`, {
         // Send POST request to add project
         ...newProjectDetails,
       });

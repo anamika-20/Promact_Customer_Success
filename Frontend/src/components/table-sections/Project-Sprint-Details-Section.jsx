@@ -4,7 +4,7 @@ import "monday-ui-react-core/tokens"; // Importing tokens for styling
 import Table from "src/components/utility-components/Table"; // Importing custom Table component
 import axios from "axios"; // Importing Axios for making HTTP requests
 import { toast } from "react-toastify"; // Importing toast notifications for displaying messages
-import "src/styling/project_sprint_details_section.css"; // Importing CSS styles for the component
+import "src/styling/project-sprint-details-section.css"; // Importing CSS styles for the component
 
 // Project_Sprint_Details_Section component definition
 const Project_Sprint_Details_Section = ({ activeTab }) => {
@@ -24,7 +24,7 @@ const Project_Sprint_Details_Section = ({ activeTab }) => {
     try {
       // Sending changed table rows to the server for saving
       const response = await axios.post(
-        `${BASE_URL}${PATH_NAME}/sprint_details`,
+        `${BASE_URL}${PATH_NAME}/sprint-details`,
         [...changedTableRows]
       );
       // Displaying success message using toast notification
@@ -41,7 +41,7 @@ const Project_Sprint_Details_Section = ({ activeTab }) => {
   const fetchData = async () => {
     try {
       // Making a GET request to fetch sprint details
-      const response = await fetch(`${BASE_URL}${PATH_NAME}/sprint_details`);
+      const response = await fetch(`${BASE_URL}${PATH_NAME}/sprint-details`);
       const { data } = await response.json(); // Parsing response JSON
       // Setting fetched sprint details to state variable
       setSprintDetails(data);

@@ -1,4 +1,4 @@
-const edit_requests = require("../../../Model/EditRequests.js");
+const edit_requests = require("../../../Model/edit-requests.js");
 
 const getEditRequest = async (req, res) => {
   try {
@@ -24,4 +24,4 @@ const alterEditRequest = async (req, res) => {
   }
 };
 
-module.exports = { getEditRequest, alterEditRequest };
+module.exports = { alterEditRequest, getEditRequest };

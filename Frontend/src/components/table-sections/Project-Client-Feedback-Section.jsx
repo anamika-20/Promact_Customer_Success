@@ -3,7 +3,7 @@ import { Box } from "monday-ui-react-core"; // Importing Box component from Mond
 import "monday-ui-react-core/tokens"; // Importing tokens for styling
 import Table from "src/components/utility-components/Table"; // Importing custom Table component
 import axios from "axios"; // Importing Axios for making HTTP requests
-import "src/styling/project_stakeholder_section.css"; // Importing CSS styles for the component
+import "src/styling/project-stakeholder-section.css"; // Importing CSS styles for the component
 import { toast } from "react-toastify"; // Importing toast notifications for displaying messages
 
 const Project_Client_Feedback_Section = ({ activeTab }) => {
@@ -20,7 +20,7 @@ const Project_Client_Feedback_Section = ({ activeTab }) => {
     try {
       // Sending changed table rows to the server for saving
       const response = await axios.post(
-        `${BASE_URL}${PATH_NAME}/client_feedback`,
+        `${BASE_URL}${PATH_NAME}/client-feedback`,
         [...changedTableRows]
       );
       // Displaying success message using toast notification
@@ -37,7 +37,7 @@ const Project_Client_Feedback_Section = ({ activeTab }) => {
   const fetchData = async () => {
     try {
       // Making a GET request to fetch stakeholders data
-      const response = await fetch(`${BASE_URL}${PATH_NAME}/client_feedback`);
+      const response = await fetch(`${BASE_URL}${PATH_NAME}/client-feedback`);
       const { data } = await response.json(); // Parsing response JSON
       // Setting fetched stakeholders data to state variable
       setClientFeedback(data);

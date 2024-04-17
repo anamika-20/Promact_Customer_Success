@@ -13,7 +13,7 @@ const Home = () => {
   // Function to fetch associated projects
   const fetchData = async () => {
     try {
-      let { data } = await axios.get(`${BASE_URL}/projects`, {
+      let { data } = await axios.get(`${BASE_URL}/project`, {
         // Fetch projects from API
         params: { id: auth.id, role: auth.role }, // Pass user ID and role as query parameters
       });
