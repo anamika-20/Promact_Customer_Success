@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react"; // Importing React and necessary hooks
 import { Box } from "monday-ui-react-core"; // Importing Box component from Monday UI React Core library
 import "monday-ui-react-core/tokens"; // Importing tokens for styling
-import Table from "src/components/utility_components/Table"; // Importing custom Table component
+import Table from "src/components/utility-components/Table"; // Importing custom Table component
 import axios from "axios"; // Importing Axios for making HTTP requests
 import "src/styling/project_stakeholder_section.css"; // Importing CSS styles for the component
 import { toast } from "react-toastify"; // Importing toast notifications for displaying messages
 
-const Project_MoMs_Section = ({ activeTab }) => {
-  const [MoMs, setMoMs] = useState([]); // State to manage stakeholders data
+const Project_Resources_Section = ({ activeTab }) => {
+  const [resources, setResources] = useState([]); // State to manage stakeholders data
   const [changedTableRows, setChangedTableRows] = useState([]); // State to track changed table rows
   const [showSaveButton, setShowSaveButton] = useState(false); // State to control visibility of save button
   const [allowedUsers, setAllowedUsers] = useState([]);
@@ -19,7 +19,7 @@ const Project_MoMs_Section = ({ activeTab }) => {
   const handleSubmit = async () => {
     try {
       // Sending changed table rows to the server for saving
-      const response = await axios.post(`${BASE_URL}${PATH_NAME}/mom`, [
+      const response = await axios.post(`${BASE_URL}${PATH_NAME}/resources`, [
         ...changedTableRows,
       ]);
       // Displaying success message using toast notification
@@ -36,10 +36,10 @@ const Project_MoMs_Section = ({ activeTab }) => {
   const fetchData = async () => {
     try {
       // Making a GET request to fetch stakeholders data
-      const response = await fetch(`${BASE_URL}${PATH_NAME}/mom`);
+      const response = await fetch(`${BASE_URL}${PATH_NAME}/resources`);
       const { data } = await response.json(); // Parsing response JSON
       // Setting fetched stakeholders data to state variable
-      setMoMs(data);
+      setResources(data);
 
       const project_id = PATH_NAME.split("/")[2];
       const allowedUsersResponse = await axios.get(
@@ -62,7 +62,7 @@ const Project_MoMs_Section = ({ activeTab }) => {
 
   // Hook to fetch data when the component mounts
   useEffect(() => {
-    if (activeTab != 10) {
+    if (activeTab != 13) {
       return;
     }
     fetchData(); // Calling the fetchData function
@@ -82,22 +82,25 @@ const Project_MoMs_Section = ({ activeTab }) => {
       {/* Container for stakeholders table */}
       <Box className="escalation-matrix-table-container">
         {/* Render the Table component if stakeholders data is available */}
-        {MoMs.length > 0 && (
+        {resources.length > 0 && (
           <Table
             allowedUsers={allowedUsers}
             defaultValues={{
-              project_id: MoMs[0].project_id,
+              project_id: resources[0].project_id,
             }}
             allowedRoles={["Admin", "Manager"]}
-            sectionTab={"MoMs"} // Passing section tab as prop
+            sectionTab={"resources"} // Passing section tab as prop
             setShowSaveButton={setShowSaveButton} // Passing setShowSaveButton function as prop
             setChangedTableRows={setChangedTableRows} // Passing setChangedTableRows function as prop
-            data={MoMs} // Passing stakeholders data as prop
+            data={resources} // Passing stakeholders data as prop
             invalidColumns={["project_id", "_id", "__v"]} // Specifying invalid columns for table
             columnType={[
-              // Specifying column types for table
               {
-                key: "date",
+                key: "start_date",
+                type: "date",
+              },
+              {
+                key: "end_date",
                 type: "date",
               },
             ]} // Specifying column types for table
@@ -108,4 +111,4 @@ const Project_MoMs_Section = ({ activeTab }) => {
   );
 };
 
-export default Project_MoMs_Section;
+export default Project_Resources_Section;

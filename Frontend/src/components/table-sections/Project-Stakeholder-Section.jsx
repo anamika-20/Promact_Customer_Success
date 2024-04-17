@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from "react"; // Importing React and necessary hooks
 import { Box } from "monday-ui-react-core"; // Importing Box component from Monday UI React Core library
 import "monday-ui-react-core/tokens"; // Importing tokens for styling
-import Table from "src/components/utility_components/Table"; // Importing custom Table component
+import Table from "../utility-components/Table"; // Importing custom Table component
 import axios from "axios"; // Importing Axios for making HTTP requests
-import "src/styling/project_version_history_section.css"; // Importing CSS styles for the component
+import "src/styling/project_stakeholder_section.css"; // Importing CSS styles for the component
 import { toast } from "react-toastify"; // Importing toast notifications for displaying messages
 
-// Project_Version_History_Section component definition
-const Project_Version_History_Section = ({ activeTab }) => {
+// Project_Stakeholder_Section component definition
+const Project_Stakeholder_Section = ({ activeTab }) => {
   // State variables to manage component data and behavior
-  const [versionHistory, setVersionHistory] = useState([]); // State to manage version history data
+  const [stakeholders, setStakeholders] = useState([]); // State to manage stakeholders data
   const [changedTableRows, setChangedTableRows] = useState([]); // State to track changed table rows
   const [showSaveButton, setShowSaveButton] = useState(false); // State to control visibility of save button
-  const [allowedUsers, setAllowedUsers] = useState([]);
 
   // Retrieve the base URL from environment variables
   const BASE_URL = process.env.REACT_APP_BASE_URL;
@@ -24,7 +23,7 @@ const Project_Version_History_Section = ({ activeTab }) => {
     try {
       // Sending changed table rows to the server for saving
       const response = await axios.post(
-        `${BASE_URL}${PATH_NAME}/version_history`,
+        `${BASE_URL}${PATH_NAME}/stakeholders`,
         [...changedTableRows]
       );
       // Displaying success message using toast notification
@@ -37,28 +36,14 @@ const Project_Version_History_Section = ({ activeTab }) => {
     }
   };
 
-  // Function to fetch version history data from the server
+  // Function to fetch stakeholders data from the server
   const fetchData = async () => {
     try {
-      // Making a GET request to fetch version history data
-      const response = await fetch(`${BASE_URL}${PATH_NAME}/version_history`);
+      // Making a GET request to fetch stakeholders data
+      const response = await fetch(`${BASE_URL}${PATH_NAME}/stakeholders`);
       const { data } = await response.json(); // Parsing response JSON
-      // Setting fetched version history data to state variable
-      setVersionHistory(data);
-
-      const project_id = PATH_NAME.split("/")[2];
-      const allowedUsersResponse = await axios.get(
-        `${BASE_URL}/project-edit-request/${project_id}`
-      );
-      let { data: users } = allowedUsersResponse;
-      users = users.data;
-      users = users.filter((user) => user.status == "approved");
-
-      setAllowedUsers(() => {
-        return users.map((user) => {
-          return user.user_id;
-        });
-      });
+      // Setting fetched stakeholders data to state variable
+      setStakeholders(data);
     } catch (error) {
       // Displaying error message using toast notification
       toast.error("Some Error");
@@ -67,7 +52,7 @@ const Project_Version_History_Section = ({ activeTab }) => {
 
   // Hook to fetch data when the component mounts
   useEffect(() => {
-    if (activeTab != 7) {
+    if (activeTab != 6) {
       return;
     }
     fetchData(); // Calling the fetchData function
@@ -84,33 +69,29 @@ const Project_Version_History_Section = ({ activeTab }) => {
           </button>
         </div>
       )}
-      {/* Container for version history table */}
+      {/* Container for stakeholders table */}
       <Box className="escalation-matrix-table-container">
-        {/* Render the Table component if version history data is available */}
-        {versionHistory.length > 0 && (
+        {/* Render the Table component if stakeholders data is available */}
+        {stakeholders.length > 0 && (
           <Table
-            allowedUsers={allowedUsers}
             // Default values for the table
             defaultValues={{
-              project_id: versionHistory[0].project_id,
+              project_id: stakeholders[0].project_id,
             }}
             // Roles allowed to access this table
-            allowedRoles={["Admin", "Manager"]}
+            allowedRoles={["Admin", "Auditor"]}
             // Identifier for the table section
-            sectionTab={"version_history"}
+            sectionTab={"stakeholder"}
             // Function to control the visibility of the save button
             setShowSaveButton={setShowSaveButton}
             // Function to update changed table rows state
             setChangedTableRows={setChangedTableRows}
             // Data to be displayed in the table
-            data={versionHistory}
+            data={stakeholders}
             // List of columns to be excluded from the table
             invalidColumns={["project_id", "_id", "__v"]}
-            // Configuration for column types, e.g., date formatting
-            columnType={[
-              { key: "revision_date", type: "date" },
-              { key: "approval_date", type: "date" },
-            ]}
+            // Configuration for column types, e.g., date formatting or dropdown options
+            columnType={[]}
           />
         )}
       </Box>
@@ -118,4 +99,4 @@ const Project_Version_History_Section = ({ activeTab }) => {
   );
 };
 
-export default Project_Version_History_Section; // Exporting the component
+export default Project_Stakeholder_Section; // Exporting the component

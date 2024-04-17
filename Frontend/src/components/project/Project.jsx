@@ -12,24 +12,24 @@ import "src/styling/project.css"; // Importing CSS styles for the component
 import { FaRegFilePdf, FaUserLock } from "react-icons/fa6";
 import { AiOutlineFileSync } from "react-icons/ai";
 import { RxCross2 } from "react-icons/rx";
-import RequestAccess from "./RequestAccess";
+import RequestAccess from "./Request-Access";
 import { toast } from "react-toastify"; // Import toast notifications
 
 // Importing individual sections/components related to the project
-import Project_Overview_Section from "../table_sections/Project_Overview_Section";
-import Project_Audit_History_Section from "../table_sections/Project_Audit_History_Section";
-import Project_Version_History_Section from "../table_sections/Project_Version_History_Section";
-import Project_Escalation_Matrix_Section from "../table_sections/Project_Escalation_Matrix_Section";
-import Project_Risk_Profiling_Section from "../table_sections/Project_Risk_Profiling_Section";
-import Project_Scope_and_Stack_Section from "../table_sections/Project_Scope_and_Stack_Section";
-import Project_Sprint_Details_Section from "../table_sections/Project_Sprint_Details_Section";
-import Project_Stakeholder_Section from "../table_sections/Project_Stakeholder_Section";
-import Project_Phases_Section from "../table_sections/Project_Phases_Section";
-import Project_Project_Updates_Section from "../table_sections/Project_Project_Updates_Section";
-import Project_MoMs_Section from "../table_sections/Project_MoMs_Section";
-import Project_Approved_Teams_Section from "../table_sections/Project_Approved_Teams_Section";
-import Project_Client_Feedback_Section from "../table_sections/Project_Client_Feedback_Section";
-import Project_Resources_Section from "../table_sections/Project_Resources_Section";
+import Project_Overview_Section from "../table-sections/Project-Overview-Section";
+import Project_Audit_History_Section from "../table-sections/Project-Audit-History-Section";
+import Project_Version_History_Section from "../table-sections/Project-Version-History-Section";
+import Project_Escalation_Matrix_Section from "../table-sections/Project-Escalation-Matrix-Section";
+import Project_Risk_Profiling_Section from "../table-sections/Project-Risk-Profiling-Section";
+import Project_Scope_and_Stack_Section from "../table-sections/Project-Scope-and-Stack-Section";
+import Project_Sprint_Details_Section from "../table-sections/Project-Sprint-Details-Section";
+import Project_Stakeholder_Section from "../table-sections/Project-Stakeholder-Section";
+import Project_Phases_Section from "../table-sections/Project-Phases-Section";
+import Project_Project_Updates_Section from "../table-sections/Project-Project-Updates-Section";
+import Project_MoMs_Section from "../table-sections/Project-MoMs-Section";
+import Project_Approved_Teams_Section from "../table-sections/Project-Approved-Teams-Section";
+import Project_Client_Feedback_Section from "../table-sections/Project-Client-Feedback-Section";
+import Project_Resources_Section from "../table-sections/Project-Resources-Section";
 
 // Project component definition
 const Project = () => {

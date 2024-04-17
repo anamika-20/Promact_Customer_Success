@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios"; // Import axios for making HTTP requests
-import NavigationTab from "src/components/utility_components/NavigationTab"; // Import NavigationTab component
-import AuthContext from "src/context/AuthProvider"; // Import AuthContext for authentication
+import NavigationTab from "src/components/utility-components/Navigation-Tab"; // Import NavigationTab component
+import AuthContext from "src/context/Auth-Provider"; // Import AuthContext for authentication
 import "src/styling/home.css"; // Import CSS file for styling
 import { toast } from "react-toastify"; // Import toast notifications
 

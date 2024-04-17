@@ -4,7 +4,7 @@ import "monday-ui-react-core/tokens"; // Importing tokens for styling
 import "src/styling/project_scope_and_stack_section.css"; // Importing CSS styles for the component
 import axios from "axios"; // Importing Axios for making HTTP requests
 import { toast } from "react-toastify"; // Importing toast notifications for displaying messages
-import AuthContext from "src/context/AuthProvider";
+import AuthContext from "src/context/Auth-Provider";
 
 // Scope_and_Stack_Section component definition
 const Scope_and_Stack_Section = ({ activeTab }) => {
@@ -51,7 +51,7 @@ const Scope_and_Stack_Section = ({ activeTab }) => {
       toast.error("Some Error");
     }
   };
-  
+
   // Function to handle input change
   const handleInputChange = (e, field) => {
     const newProjectDetails = { ...projectDetails }; // Creating a copy of project details object

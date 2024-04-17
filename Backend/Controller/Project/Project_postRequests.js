@@ -28,21 +28,7 @@ const addProject = async (req, res) => {
   }
 };
 
-// Function to update project details
-const alterProjectDetails = async (req, res) => {
-  try {
-    const { id } = req.params;
-    const { projectDetails } = req.body; // Extracting project details from request body
-    let response = await project.updateOne(
-      // Updating project details in the database
-      { _id: id }, // Finding the project by its ID
-      { $set: projectDetails } // Setting the new project details
-    );
-    res.status(200).json({ message: "Details Updated Successfully" }); // Sending success response
-  } catch (error) {
-    res.status(500).json({ message: "Error while Altering Project Details" }); // Sending error response if any error occurs during updating
-  }
-};
+
 
 // Function to handle alterations in version history records
 const alterVersionHistory = async (req, res) => {
@@ -88,49 +74,7 @@ const alterVersionHistory = async (req, res) => {
   }
 };
 
-// Function to handle alterations in audit history records
-const alterAuditHistory = async (req, res) => {
-  try {
-    // Filtering records to identify added/updated and deleted records separately
-    const { id } = req.params;
-    let updatedRecords = req.body.filter((record) => {
-      return record.action === "added/updated";
-    });
-    let deletedRecords = req.body.filter((record) => {
-      return record.action === "delete";
-    });
 
-    // Generating update operations for updated records
-    const updateRecordOperations = updatedRecords.map((obj) => ({
-      updateOne: {
-        filter: { _id: obj._id, project_id: id }, // Filtering by ID
-        update: { $set: obj }, // Setting new values
-        upsert: true, // Creating a new document if it doesn't exist
-      },
-    }));
-
-    // Generating delete operations for deleted records
-    const deleteRecordOperations = deletedRecords.map((obj) => ({
-      deleteOne: {
-        filter: { _id: obj._id, project_id: id }, // Filtering by ID
-        update: { $set: obj }, // Setting deleted document
-        upsert: true, // Creating a new document if it doesn't exist
-      },
-    }));
-
-    // Performing bulk write operation to update and delete records
-    const updateRecordResult = await audit_history.bulkWrite(
-      updateRecordOperations
-    );
-    const deleteRecordResult = await audit_history.bulkWrite(
-      deleteRecordOperations
-    );
-
-    res.status(200).json({ message: "Data updated successfully" }); // Sending success response
-  } catch (error) {
-    res.status(500).json({ message: "Error while Altering Audit History" }); // Sending error response if any error occurs
-  }
-};
 
 // Function to handle alterations in stakeholders records
 const alterStakeholders = async (req, res) => {
@@ -189,60 +133,7 @@ const alterStakeholders = async (req, res) => {
   }
 };
 
-// Function to handle alterations in escalation matrix records
-const alterEscalationMatrix = async (req, res) => {
-  try {
-    const { id } = req.params;
 
-    // Filtering records to identify added/updated and deleted records separately
-    let updatedRecords = req.body.filter((record) => {
-      return record.action === "added/updated";
-    });
-    let deletedRecords = req.body.filter((record) => {
-      return record.action === "delete";
-    });
-
-    updatedRecords = updatedRecords.map((record) => {
-      delete record.action;
-      return record;
-    });
-
-    deletedRecords = deletedRecords.map((record) => {
-      delete record.action;
-      return record;
-    });
-
-    // Generating update operations for updated records
-    const updateRecordOperations = updatedRecords.map((obj) => ({
-      updateOne: {
-        filter: { _id: obj._id, project_id: id }, // Filtering by ID
-        update: { $set: obj }, // Setting new values
-        upsert: true, // Creating a new document if it doesn't exist
-      },
-    }));
-
-    // Generating delete operations for deleted records
-    const deleteRecordOperations = deletedRecords.map((obj) => ({
-      deleteOne: {
-        filter: { _id: obj._id, project_id: id }, // Filtering by ID
-        update: { $set: obj }, // Setting deleted document
-        upsert: true, // Creating a new document if it doesn't exist
-      },
-    }));
-
-    // Performing bulk write operation to update and delete records
-    const updateRecordResult = await escalation_matrix.bulkWrite(
-      updateRecordOperations
-    );
-    const deleteRecordResult = await escalation_matrix.bulkWrite(
-      deleteRecordOperations
-    );
-
-    res.status(200).json({ message: "Data updated successfully" }); // Sending success response
-  } catch (error) {
-    res.status(500).json({ message: "Error while Altering Escalation Matrix" }); // Sending error response if any error occurs
-  }
-};
 
 // Function to handle alterations in risk profiling records
 const alterRiskProfiling = async (req, res) => {
@@ -298,59 +189,7 @@ const alterRiskProfiling = async (req, res) => {
   }
 };
 
-// Function to handle alterations in phases records
-const alterPhases = async (req, res) => {
-  try {
-    // Filter records to identify added/updated and deleted records separately
-    const { id } = req.params;
-    let updatedRecords = req.body.filter((record) => {
-      return record.action === "added/updated";
-    });
-    let deletedRecords = req.body.filter((record) => {
-      return record.action === "delete";
-    });
 
-    updatedRecords = updatedRecords.map((record) => {
-      delete record.action;
-      return record;
-    });
-
-    deletedRecords = deletedRecords.map((record) => {
-      delete record.action;
-      return record;
-    });
-
-    // Generate update operations for updated records
-    const updateRecordOperations = updatedRecords.map((obj) => {
-      return {
-        updateOne: {
-          filter: { _id: obj._id, project_id: id }, // Filtering by ID
-          update: { $set: obj }, // Setting new values
-          upsert: true, // Creating a new document if it doesn't exist
-        },
-      };
-    });
-
-    // Generate delete operations for deleted records
-    const deleteRecordOperations = deletedRecords.map((obj) => ({
-      deleteOne: {
-        filter: { _id: obj._id, project_id: id }, // Filtering by ID
-        update: { $set: obj }, // Setting deleted document
-        upsert: true, // Creating a new document if it doesn't exist
-      },
-    }));
-
-    // Perform bulk write operation to update and delete records
-    const updateRecordResult = await phases.bulkWrite(updateRecordOperations);
-    const deleteRecordResult = await phases.bulkWrite(deleteRecordOperations);
-
-    // Send success response
-    res.status(200).json({ message: "Data updated successfully" });
-  } catch (error) {
-    // Send error response if any error occurs
-    res.status(500).json({ message: "Error while Altering Phases" });
-  }
-};
 
 // Function to handle alterations in sprint details records
 const alterSprintDetails = async (req, res) => {
@@ -407,280 +246,16 @@ const alterSprintDetails = async (req, res) => {
   }
 };
 
-const alterResources = async (req, res) => {
-  try {
-    const { id } = req.params;
-    // Filtering records to identify added/updated and deleted records separately
-    let updatedRecords = req.body.filter((record) => {
-      return record.action === "added/updated";
-    });
-    let deletedRecords = req.body.filter((record) => {
-      return record.action === "delete";
-    });
 
-    updatedRecords = updatedRecords.map((record) => {
-      delete record.action;
-      return record;
-    });
 
-    deletedRecords = deletedRecords.map((record) => {
-      delete record.action;
-      return record;
-    });
 
-    // Generating update operations for updated records
-    const updateRecordOperations = updatedRecords.map((obj) => ({
-      updateOne: {
-        filter: { _id: obj._id, project_id: id }, // Filtering by ID
-        update: { $set: obj }, // Setting new values
-        upsert: true, // Creating a new document if it doesn't exist
-      },
-    }));
 
-    // Generating delete operations for deleted records
-    const deleteRecordOperations = deletedRecords.map((obj) => ({
-      deleteOne: {
-        filter: { _id: obj._id, project_id: id }, // Filtering by ID
-        update: { $set: obj }, // Setting deleted document
-        upsert: true, // Creating a new document if it doesn't exist
-      },
-    }));
 
-    // Performing bulk write operation to update and delete records
-    const updateRecordResult = await resources.bulkWrite(
-      updateRecordOperations
-    );
-    const deleteRecordResult = await resources.bulkWrite(
-      deleteRecordOperations
-    );
 
-    res.status(200).json({ message: "Data updated successfully" }); // Sending success response
-  } catch (error) {
-    res.status(500).json({ message: "Error while Altering Resources" }); // Sending error response if any error occurs
-  }
-};
 
-const alterApprovedTeams = async (req, res) => {
-  try {
-    // Filtering records to identify added/updated and deleted records separately
-    const { id } = req.params;
-    let updatedRecords = req.body.filter((record) => {
-      return record.action === "added/updated";
-    });
-    let deletedRecords = req.body.filter((record) => {
-      return record.action === "delete";
-    });
 
-    updatedRecords = updatedRecords.map((record) => {
-      delete record.action;
-      return record;
-    });
 
-    deletedRecords = deletedRecords.map((record) => {
-      delete record.action;
-      return record;
-    });
 
-    // Generating update operations for updated records
-    const updateRecordOperations = updatedRecords.map((obj) => ({
-      updateOne: {
-        filter: { _id: obj._id, project_id: id }, // Filtering by ID
-        update: { $set: obj }, // Setting new values
-        upsert: true, // Creating a new document if it doesn't exist
-      },
-    }));
-
-    // Generating delete operations for deleted records
-    const deleteRecordOperations = deletedRecords.map((obj) => ({
-      deleteOne: {
-        filter: { _id: obj._id, project_id: id }, // Filtering by ID
-        update: { $set: obj }, // Setting deleted document
-        upsert: true, // Creating a new document if it doesn't exist
-      },
-    }));
-
-    // Performing bulk write operation to update and delete records
-    const updateRecordResult = await approved_team.bulkWrite(
-      updateRecordOperations
-    );
-    const deleteRecordResult = await approved_team.bulkWrite(
-      deleteRecordOperations
-    );
-
-    res.status(200).json({ message: "Data updated successfully" }); // Sending success response
-  } catch (error) {
-    res.status(500).json({ message: "Error while Altering Approved Teams" }); // Sending error response if any error occurs
-  }
-};
-
-const alterClientFeedback = async (req, res) => {
-  try {
-    // Filtering records to identify added/updated and deleted records separately
-    const { id } = req.params;
-    let updatedRecords = req.body.filter((record) => {
-      return record.action === "added/updated";
-    });
-    let deletedRecords = req.body.filter((record) => {
-      return record.action === "delete";
-    });
-
-    updatedRecords = updatedRecords.map((record) => {
-      delete record.action;
-      return record;
-    });
-
-    deletedRecords = deletedRecords.map((record) => {
-      delete record.action;
-      return record;
-    });
-
-    // Generating update operations for updated records
-    const updateRecordOperations = updatedRecords.map((obj) => ({
-      updateOne: {
-        filter: { _id: obj._id, project_id: id }, // Filtering by ID
-        update: { $set: obj }, // Setting new values
-        upsert: true, // Creating a new document if it doesn't exist
-      },
-    }));
-
-    // Generating delete operations for deleted records
-    const deleteRecordOperations = deletedRecords.map((obj) => ({
-      deleteOne: {
-        filter: { _id: obj._id, project_id: id }, // Filtering by ID
-        update: { $set: obj }, // Setting deleted document
-        upsert: true, // Creating a new document if it doesn't exist
-      },
-    }));
-
-    // Performing bulk write operation to update and delete records
-    const updateRecordResult = await client_feedback.bulkWrite(
-      updateRecordOperations
-    );
-    const deleteRecordResult = await client_feedback.bulkWrite(
-      deleteRecordOperations
-    );
-
-    res.status(200).json({ message: "Data updated successfully" }); // Sending success response
-  } catch (error) {
-    res.status(500).json({ message: "Error while Altering Client Feedback" }); // Sending error response if any error occurs
-  }
-};
-
-const alterMoMs = async (req, res) => {
-  try {
-    // Filtering records to identify added/updated and deleted records separately
-    const { id } = req.params;
-    let updatedRecords = req.body.filter((record) => {
-      return record.action === "added/updated";
-    });
-    let deletedRecords = req.body.filter((record) => {
-      return record.action === "delete";
-    });
-
-    updatedRecords = updatedRecords.map((record) => {
-      delete record.action;
-      return record;
-    });
-
-    deletedRecords = deletedRecords.map((record) => {
-      delete record.action;
-      return record;
-    });
-
-    // Generating update operations for updated records
-    const updateRecordOperations = updatedRecords.map((obj) => ({
-      updateOne: {
-        filter: { _id: obj._id, project_id: id }, // Filtering by ID
-        update: { $set: obj }, // Setting new values
-        upsert: true, // Creating a new document if it doesn't exist
-      },
-    }));
-
-    // Generating delete operations for deleted records
-    const deleteRecordOperations = deletedRecords.map((obj) => ({
-      deleteOne: {
-        filter: { _id: obj._id, project_id: id }, // Filtering by ID
-        update: { $set: obj }, // Setting deleted document
-        upsert: true, // Creating a new document if it doesn't exist
-      },
-    }));
-
-    // Performing bulk write operation to update and delete records
-    const updateRecordResult = await mom.bulkWrite(updateRecordOperations);
-    const deleteRecordResult = await mom.bulkWrite(deleteRecordOperations);
-
-    res.status(200).json({ message: "Data updated successfully" }); // Sending success response
-  } catch (error) {
-    res.status(500).json({ message: "Error while Altering MoM" }); // Sending error response if any error occurs
-  }
-};
-
-const alterProjectUpdates = async (req, res) => {
-  try {
-    // Filtering records to identify added/updated and deleted records separately
-    const { id } = req.params;
-    let updatedRecords = req.body.filter((record) => {
-      return record.action === "added/updated";
-    });
-    let deletedRecords = req.body.filter((record) => {
-      return record.action === "delete";
-    });
-
-    updatedRecords = updatedRecords.map((record) => {
-      delete record.action;
-      return record;
-    });
-
-    deletedRecords = deletedRecords.map((record) => {
-      delete record.action;
-      return record;
-    });
-
-    // Generating update operations for updated records
-    const updateRecordOperations = updatedRecords.map((obj) => ({
-      updateOne: {
-        filter: { _id: obj._id, project_id: id }, // Filtering by ID
-        update: { $set: obj }, // Setting new values
-        upsert: true, // Creating a new document if it doesn't exist
-      },
-    }));
-
-    // Generating delete operations for deleted records
-    const deleteRecordOperations = deletedRecords.map((obj) => ({
-      deleteOne: {
-        filter: { _id: obj._id, project_id: id }, // Filtering by ID
-        update: { $set: obj }, // Setting deleted document
-        upsert: true, // Creating a new document if it doesn't exist
-      },
-    }));
-
-    // Performing bulk write operation to update and delete records
-    const updateRecordResult = await project_updates.bulkWrite(
-      updateRecordOperations
-    );
-    const deleteRecordResult = await project_updates.bulkWrite(
-      deleteRecordOperations
-    );
-
-    res.status(200).json({ message: "Data updated successfully" }); // Sending success response
-  } catch (error) {
-    res.status(500).json({ message: "Error while Altering Project Updates" }); // Sending error response if any error occurs
-  }
-};
-
-const alterEditRequest = async (req, res) => {
-  try {
-    const data = req.body[0];
-    const response = await edit_requests.updateOne(
-      { _id: data._id },
-      { $set: data },
-      { upsert: true }
-    );
-    res.status(200).json({ message: "Request Updated Successfully" });
-  } catch (error) {
-    res.status(500).json({ message: "Error while Altering Edit Request" });
-  }
-};
 
 const deleteProject = async (req, res) => {
   try {

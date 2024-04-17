@@ -1,6 +1,6 @@
 // Importing required modules and controllers
 const express = require("express");
-const project_router = require("./project_route.js");
+const project_router = require("./project-route.js");
 const router = express.Router();
 
 // Importing controller functions for handling POST request for project
@@ -25,12 +25,12 @@ const { sendInviteEmail } = require("../Controller/email.js"); // Importing func
 // Route for fetching or altering user projects data
 router.route("/projects").get(getUserProjects);
 
-router.route("/addProject").post(addProject);
+router.route("/add-project").post(addProject);
 
 router.use("/project/", project_router);
 
 // Route for sending invitation emails
-router.route("/sendEmail/invite").post(sendInviteEmail);
+router.route("/send-email/invite").post(sendInviteEmail);
 
 router
   .route("/edit-request/:user_id")
@@ -39,11 +39,11 @@ router
 
 router.route("/project-edit-request/:project_id").get(getProjectEditRequest);
 
-router.route("/project-delete/:project_id").delete(deleteProject);
+
 
 router.route("/project-change/").post(addProjectChanges);
 
-router.route("/getManagers").get(fetchManagers);
+router.route("/get-managers").get(fetchManagers);
 
 // Exporting the router modulecls
 module.exports = router;

@@ -4,7 +4,7 @@ import "monday-ui-react-core/tokens"; // Importing tokens for styling
 import "src/styling/project_overview_section.css"; // Importing CSS styles for the component
 import axios from "axios"; // Importing Axios for making HTTP requests
 import { toast } from "react-toastify"; // Importing toast notifications for displaying messages
-import AuthContext from "src/context/AuthProvider";
+import AuthContext from "src/context/Auth-Provider";
 
 // Project_Overview_Section component definition
 const Project_Overview_Section = ({ activeTab }) => {

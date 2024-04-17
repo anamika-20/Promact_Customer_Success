@@ -4,7 +4,7 @@ import "monday-ui-react-core/tokens"; // Importing tokens for styling
 import { FaPlus } from "react-icons/fa6"; // Importing FaPlus icon from React Icons
 import { NavLink } from "react-router-dom"; // Importing NavLink component from react-router-dom
 import { Box, Flex } from "monday-ui-react-core"; // Importing necessary components from Monday UI React Core library
-import AuthContext from "src/context/AuthProvider"; // Importing AuthContext from context/AuthProvider
+import AuthContext from "src/context/Auth-Provider"; // Importing AuthContext from context/AuthProvider
 
 // Sidebar component definition
 const Sidebar = () => {

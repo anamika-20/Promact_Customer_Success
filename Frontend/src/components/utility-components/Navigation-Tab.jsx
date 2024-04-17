@@ -4,7 +4,7 @@ import "src/styling/navigation-tab.css"; // Import CSS file for styling
 import { useNavigate } from "react-router-dom"; // Navigation hook for routing
 import { fetchUsersByRole } from "src/util/users"; // Function to fetch users by role
 import axios from "axios"; // HTTP client for making requests
-import AuthContext from "src/context/AuthProvider"; // Context for authentication
+import AuthContext from "src/context/Auth-Provider"; // Context for authentication
 import { toast } from "react-toastify"; // Toast notifications
 
 // Function to generate table based on data
@@ -230,7 +230,7 @@ function NavigationTab({ data, setData }) {
       );
       if (delete_confirmation) {
         const response = await axios.delete(
-          `${BASE_URL}/project-delete/${project_id}`
+          `${BASE_URL}/project/${project_id}`
         );
         if (response.statusText === "OK") {
           const newRows = rows.filter((row) => row._id !== project_id);

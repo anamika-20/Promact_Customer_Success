@@ -2,12 +2,12 @@ import React from "react";
 import Layout from "src/Layout";
 import Login from "src/components/user/Login.jsx";
 import { Route, Routes } from "react-router-dom";
-import ProtectedRoute from "src/components/routing/ProtectedRoute.jsx";
+import ProtectedRoute from "src/components/routing/Protected-Route.jsx";
 import Home from "src/components/dashboard/Home.jsx";
 import Project from "src/components/project/Project.jsx";
-import CreateProject from "src/components/project/CreateProject.jsx";
-import CreateUser from "src/components/user/CreateUser.jsx";
-import UpdateUserPassword from "src/components/user/UpdateUserPassword.jsx";
+import CreateProject from "src/components/project/Create-Project.jsx";
+import CreateUser from "src/components/user/Create-User.jsx";
+import UpdateUserPassword from "src/components/user/Update-User-Password.jsx";
 
 // Main component defining the application routes
 const App = () => {

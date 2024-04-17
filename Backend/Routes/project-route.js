@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { generatePDF } = require("../Controller/genPDF.js"); // Importing function for generating PDF files
+const { generatePDF } = require("../Controller/gen-pdf.js"); // Importing function for generating PDF files
 const { sendMail } = require("../Controller/email.js"); // Importing function for sending emails
 
 // Importing controller functions for handling POST request for project
@@ -18,6 +18,7 @@ const {
   alterClientFeedback, // Alters client feedback data
   alterMoMs, // Alters minutes of meeting data
   alterProjectUpdates, // Alters project updates data
+  deleteProject
 } = require("../Controller/Project/Project_postRequests.js");
 
 // Importing controller functions for handling GET request for project
@@ -36,6 +37,8 @@ const {
   getProjectUpdates, // Retrieves project updates data
   getResources, // Retrieves resources data
 } = require("../Controller/Project/Project_getRequests.js");
+
+router.route('/:project_id').delete(deleteProject)
 
 // Route for fetching or altering project details
 router

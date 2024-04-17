@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from "uuid"; // Importing UUID library for generating un
 import "src/styling/crud-table.css"; // Importing CSS styles for the CRUD table component
 import { toast } from "react-toastify"; // Importing toast notifications library
 import "react-toastify/dist/ReactToastify.css"; // Importing CSS for toast notifications
-import AuthContext from "src/context/AuthProvider"; //Importing Context for Authentication
+import AuthContext from "src/context/Auth-Provider"; //Importing Context for Authentication
 
 // Table component definition
 const Table = ({
