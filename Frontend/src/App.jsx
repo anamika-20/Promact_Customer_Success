@@ -3,7 +3,7 @@ import Layout from "src/Layout";
 import Login from "src/components/user/Login.jsx";
 import { Route, Routes } from "react-router-dom";
 import ProtectedRoute from "src/components/routing/Protected-Route.jsx";
-import Home from "src/components/dashboard/Home.jsx";
+import Home from "src/components/dashboard/Home2.jsx";
 import Project from "src/components/project/Project.jsx";
 import CreateProject from "src/components/project/Create-Project.jsx";
 import CreateUser from "src/components/user/Create-User.jsx";
